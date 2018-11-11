@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateTipoConsolaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateTipoConsolaLabel_idTipo}" for="idTipo" />
+                    <h:inputText id="idTipo" value="#{tipoConsolaController.selected.idTipo}" title="#{bundle.CreateTipoConsolaTitle_idTipo}" required="true" requiredMessage="#{bundle.CreateTipoConsolaRequiredMessage_idTipo}"/>
+                    <h:outputLabel value="#{bundle.CreateTipoConsolaLabel_dscTipo}" for="dscTipo" />
+                    <h:inputText id="dscTipo" value="#{tipoConsolaController.selected.dscTipo}" title="#{bundle.CreateTipoConsolaTitle_dscTipo}" required="true" requiredMessage="#{bundle.CreateTipoConsolaRequiredMessage_dscTipo}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{tipoConsolaController.create}" value="#{bundle.CreateTipoConsolaSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{tipoConsolaController.prepareList}" value="#{bundle.CreateTipoConsolaShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateTipoConsolaIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

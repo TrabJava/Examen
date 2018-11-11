@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateAdminTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateAdminLabel_idAdmin}" for="idAdmin" />
+                    <h:inputText id="idAdmin" value="#{adminController.selected.idAdmin}" title="#{bundle.CreateAdminTitle_idAdmin}" required="true" requiredMessage="#{bundle.CreateAdminRequiredMessage_idAdmin}"/>
+                    <h:outputLabel value="#{bundle.CreateAdminLabel_user}" for="user" />
+                    <h:inputText id="user" value="#{adminController.selected.user}" title="#{bundle.CreateAdminTitle_user}" required="true" requiredMessage="#{bundle.CreateAdminRequiredMessage_user}"/>
+                    <h:outputLabel value="#{bundle.CreateAdminLabel_pass}" for="pass" />
+                    <h:inputText id="pass" value="#{adminController.selected.pass}" title="#{bundle.CreateAdminTitle_pass}" required="true" requiredMessage="#{bundle.CreateAdminRequiredMessage_pass}"/>
+                    <h:outputLabel value="#{bundle.CreateAdminLabel_nombre}" for="nombre" />
+                    <h:inputText id="nombre" value="#{adminController.selected.nombre}" title="#{bundle.CreateAdminTitle_nombre}" required="true" requiredMessage="#{bundle.CreateAdminRequiredMessage_nombre}"/>
+                    <h:outputLabel value="#{bundle.CreateAdminLabel_estadoAdmin}" for="estadoAdmin" />
+                    <h:selectOneMenu id="estadoAdmin" value="#{adminController.selected.estadoAdmin}" title="#{bundle.CreateAdminTitle_estadoAdmin}" required="true" requiredMessage="#{bundle.CreateAdminRequiredMessage_estadoAdmin}">
+                        <f:selectItems value="#{estadoAdminController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{adminController.create}" value="#{bundle.CreateAdminSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{adminController.prepareList}" value="#{bundle.CreateAdminShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateAdminIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

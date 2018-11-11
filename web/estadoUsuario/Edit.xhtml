@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditEstadoUsuarioTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditEstadoUsuarioLabel_idEstadous}" for="idEstadous" />
+                    <h:inputText id="idEstadous" value="#{estadoUsuarioController.selected.idEstadous}" title="#{bundle.EditEstadoUsuarioTitle_idEstadous}" required="true" requiredMessage="#{bundle.EditEstadoUsuarioRequiredMessage_idEstadous}"/>
+                    <h:outputLabel value="#{bundle.EditEstadoUsuarioLabel_descEstadous}" for="descEstadous" />
+                    <h:inputText id="descEstadous" value="#{estadoUsuarioController.selected.descEstadous}" title="#{bundle.EditEstadoUsuarioTitle_descEstadous}" required="true" requiredMessage="#{bundle.EditEstadoUsuarioRequiredMessage_descEstadous}"/>
+                </h:panelGrid>
+                <h:commandLink action="#{estadoUsuarioController.update}" value="#{bundle.EditEstadoUsuarioSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditEstadoUsuarioViewLink}"/>
+                <br />
+                <h:commandLink action="#{estadoUsuarioController.prepareList}" value="#{bundle.EditEstadoUsuarioShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditEstadoUsuarioIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

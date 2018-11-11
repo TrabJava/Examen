@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateJuegoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateJuegoLabel_idJuego}" for="idJuego" />
+                    <h:inputText id="idJuego" value="#{juegoController.selected.idJuego}" title="#{bundle.CreateJuegoTitle_idJuego}" required="true" requiredMessage="#{bundle.CreateJuegoRequiredMessage_idJuego}"/>
+                    <h:outputLabel value="#{bundle.CreateJuegoLabel_nombre}" for="nombre" />
+                    <h:inputText id="nombre" value="#{juegoController.selected.nombre}" title="#{bundle.CreateJuegoTitle_nombre}" required="true" requiredMessage="#{bundle.CreateJuegoRequiredMessage_nombre}"/>
+                    <h:outputLabel value="#{bundle.CreateJuegoLabel_descJuego}" for="descJuego" />
+                    <h:inputText id="descJuego" value="#{juegoController.selected.descJuego}" title="#{bundle.CreateJuegoTitle_descJuego}" required="true" requiredMessage="#{bundle.CreateJuegoRequiredMessage_descJuego}"/>
+                    <h:outputLabel value="#{bundle.CreateJuegoLabel_valor}" for="valor" />
+                    <h:inputText id="valor" value="#{juegoController.selected.valor}" title="#{bundle.CreateJuegoTitle_valor}" required="true" requiredMessage="#{bundle.CreateJuegoRequiredMessage_valor}"/>
+                    <h:outputLabel value="#{bundle.CreateJuegoLabel_fabricante}" for="fabricante" />
+                    <h:inputText id="fabricante" value="#{juegoController.selected.fabricante}" title="#{bundle.CreateJuegoTitle_fabricante}" required="true" requiredMessage="#{bundle.CreateJuegoRequiredMessage_fabricante}"/>
+                    <h:outputLabel value="#{bundle.CreateJuegoLabel_idioma}" for="idioma" />
+                    <h:inputText id="idioma" value="#{juegoController.selected.idioma}" title="#{bundle.CreateJuegoTitle_idioma}" required="true" requiredMessage="#{bundle.CreateJuegoRequiredMessage_idioma}"/>
+                    <h:outputLabel value="#{bundle.CreateJuegoLabel_subtitulos}" for="subtitulos" />
+                    <h:inputText id="subtitulos" value="#{juegoController.selected.subtitulos}" title="#{bundle.CreateJuegoTitle_subtitulos}" required="true" requiredMessage="#{bundle.CreateJuegoRequiredMessage_subtitulos}"/>
+                    <h:outputLabel value="#{bundle.CreateJuegoLabel_online}" for="online" />
+                    <h:inputText id="online" value="#{juegoController.selected.online}" title="#{bundle.CreateJuegoTitle_online}" required="true" requiredMessage="#{bundle.CreateJuegoRequiredMessage_online}"/>
+                    <h:outputLabel value="#{bundle.CreateJuegoLabel_cantidad}" for="cantidad" />
+                    <h:inputText id="cantidad" value="#{juegoController.selected.cantidad}" title="#{bundle.CreateJuegoTitle_cantidad}" />
+                    <h:outputLabel value="#{bundle.CreateJuegoLabel_foto}" for="foto" />
+                    <h:inputText id="foto" value="#{juegoController.selected.foto}" title="#{bundle.CreateJuegoTitle_foto}" />
+                    <h:outputLabel value="#{bundle.CreateJuegoLabel_categoria}" for="categoria" />
+                    <h:selectOneMenu id="categoria" value="#{juegoController.selected.categoria}" title="#{bundle.CreateJuegoTitle_categoria}" required="true" requiredMessage="#{bundle.CreateJuegoRequiredMessage_categoria}">
+                        <f:selectItems value="#{categoriaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateJuegoLabel_estadoJu}" for="estadoJu" />
+                    <h:selectOneMenu id="estadoJu" value="#{juegoController.selected.estadoJu}" title="#{bundle.CreateJuegoTitle_estadoJu}" required="true" requiredMessage="#{bundle.CreateJuegoRequiredMessage_estadoJu}">
+                        <f:selectItems value="#{estadoJuegoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateJuegoLabel_tipo}" for="tipo" />
+                    <h:selectOneMenu id="tipo" value="#{juegoController.selected.tipo}" title="#{bundle.CreateJuegoTitle_tipo}" required="true" requiredMessage="#{bundle.CreateJuegoRequiredMessage_tipo}">
+                        <f:selectItems value="#{tipoConsolaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{juegoController.create}" value="#{bundle.CreateJuegoSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{juegoController.prepareList}" value="#{bundle.CreateJuegoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateJuegoIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

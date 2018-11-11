@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditCodigoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditCodigoLabel_idCodigo}" for="idCodigo" />
+                    <h:inputText id="idCodigo" value="#{codigoController.selected.idCodigo}" title="#{bundle.EditCodigoTitle_idCodigo}" required="true" requiredMessage="#{bundle.EditCodigoRequiredMessage_idCodigo}"/>
+                    <h:outputLabel value="#{bundle.EditCodigoLabel_descCodigo}" for="descCodigo" />
+                    <h:inputText id="descCodigo" value="#{codigoController.selected.descCodigo}" title="#{bundle.EditCodigoTitle_descCodigo}" required="true" requiredMessage="#{bundle.EditCodigoRequiredMessage_descCodigo}"/>
+                    <h:outputLabel value="#{bundle.EditCodigoLabel_estadoCo}" for="estadoCo" />
+                    <h:selectOneMenu id="estadoCo" value="#{codigoController.selected.estadoCo}" title="#{bundle.EditCodigoTitle_estadoCo}" required="true" requiredMessage="#{bundle.EditCodigoRequiredMessage_estadoCo}">
+                        <f:selectItems value="#{estadoCodigoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{codigoController.update}" value="#{bundle.EditCodigoSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditCodigoViewLink}"/>
+                <br />
+                <h:commandLink action="#{codigoController.prepareList}" value="#{bundle.EditCodigoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditCodigoIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
