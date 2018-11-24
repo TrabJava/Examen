@@ -5,9 +5,11 @@
  */
 package modelo.dao;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import modelo.dto.Usuario;
 
 /**
@@ -29,4 +31,20 @@ public class UsuarioFacade extends AbstractFacade<Usuario> {
         super(Usuario.class);
     }
     
+    public Usuario existeUsuario(Usuario us){
+        Usuario usuario = null;
+        try {
+            Query query = em.createQuery("SELECT u FROM Usuario u WHERE u.user = :user AND u.pass = :pass");
+        query.setParameter("user", us.getUser());
+        query.setParameter("pass", us.getPass());
+        List<Usuario> lista = query.getResultList();
+            if (!lista.isEmpty()) {
+                usuario = lista.get(0);
+            }
+        
+        } catch (Exception e) {
+            throw e;
+        }
+        return usuario;
+    }
 }
