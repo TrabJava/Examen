@@ -7,9 +7,11 @@ import modelo.dao.UsuarioFacade;
 
 import java.io.Serializable;
 import java.util.ResourceBundle;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
@@ -21,14 +23,17 @@ import javax.faces.model.SelectItem;
 @Named("usuarioController")
 @SessionScoped
 public class UsuarioController implements Serializable {
-
+ 
     private Usuario current;
     private DataModel items = null;
     @EJB
     private modelo.dao.UsuarioFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
-
+    
+    
+    
+    
     public UsuarioController() {
     }
 
@@ -230,6 +235,24 @@ public class UsuarioController implements Serializable {
             }
         }
 
+    }
+    
+    public String iniciarSesion(){
+        Usuario us;
+        String redireccion = null;
+        try {
+          us = ejbFacade.existeUsuario(current);
+            if (us!=null) {
+                redireccion = "/index";
+            }else{
+               FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,"Aviso","Credenciales incorrectas"));
+        
+            }
+           
+        } catch (Exception e) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Aviso","ERROR!"));
+        }
+        return redireccion;
     }
 
 }
