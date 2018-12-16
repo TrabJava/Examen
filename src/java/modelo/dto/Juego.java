@@ -43,6 +43,7 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Juego.findBySubtitulos", query = "SELECT j FROM Juego j WHERE j.subtitulos = :subtitulos")
     , @NamedQuery(name = "Juego.findByOnline", query = "SELECT j FROM Juego j WHERE j.online = :online")
     , @NamedQuery(name = "Juego.findByCantidad", query = "SELECT j FROM Juego j WHERE j.cantidad = :cantidad")
+    , @NamedQuery(name = "Juego.PORPS4", query = "SSELECT j.nombre,j.desc_juego,j.idioma,j.valor,tc.dsc_tipo,j.categoria FROM juego j JOIN tipo_consola tc ON j.tipo=tc.id_tipo WHERE j.tipo=2")
     , @NamedQuery(name = "Juego.findByFoto", query = "SELECT j FROM Juego j WHERE j.foto = :foto")})
 public class Juego implements Serializable {
 
