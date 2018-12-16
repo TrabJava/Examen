@@ -14,7 +14,7 @@ body, html {
 
 body, html, table, tr, td, div {
 	font-family: Verdana;
-	font-size: 10px;
+	font-size: 15px;
 	color: #FFFFFF;
 }
 
@@ -71,7 +71,7 @@ hr {
 
 .nav-title {
 	font-family: Verdana;
-	font-size: 10px;
+	font-size: 20px;
 	font-weight: bold;
 	color: #FFFFFF;
 	width: 152px;
