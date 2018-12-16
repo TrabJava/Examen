@@ -6,8 +6,6 @@ import controladores.util.PaginationHelper;
 import modelo.dao.JuegoFacade;
 
 import java.io.Serializable;
-import java.util.List;
-import java.util.*;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.inject.Named;
@@ -29,8 +27,6 @@ public class JuegoController implements Serializable {
     @EJB
     private modelo.dao.JuegoFacade ejbFacade;
     
-     //Creamos Una lista 
-    List<Juego>ListarJuegosPS4;
     
     private PaginationHelper pagination;
     private int selectedItemIndex;
@@ -238,11 +234,6 @@ public class JuegoController implements Serializable {
 
     }
 
- 
-    public List<Juego> getListarJuegosPS4() {
-        ListarJuegosPS4=ejbFacade.ListarJuegoosPS4();
-        return ListarJuegosPS4;
-    }
-    
+  
     
 }
