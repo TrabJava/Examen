@@ -5,11 +5,9 @@
  */
 package modelo.dao;
 
-import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 import modelo.dto.Juego;
 
 /**
@@ -30,10 +28,5 @@ public class JuegoFacade extends AbstractFacade<Juego> {
     public JuegoFacade() {
         super(Juego.class);
     }
- 
-    
-    public List<Juego>ListarJuegoosPS4(){
-        Query query= em.createNamedQuery("Juego.PORPS4");
-        return query.getResultList();
-    }
+
 }
