@@ -1,0 +1,156 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <meta http-equiv="Content-type" content="text/html;charset=UTF-8" /> 
+        <title>Website Name Here</title>
+        <link rel="stylesheet" type="text/css" href="css/MenuFormato.css" />
+    </h:head>
+
+    <h:body>
+
+        <div id="container">
+            <div id="header"></div>
+            <div id="top-nav"><a href="/">Inicio</a> :: <a href="/">Ps4</a> :: <a href="/">Xbox One</a> :: <a href="/">Switch</a> :: <a href="/">Pc</a> ::</div>
+            <div id="primary">
+
+                <p:menu>
+                            <p:submenu label="Plataforma">
+                                <p:menuitem value="Juegos PS4" icon=" ui-icon-circle-plus" url="#"/>
+                                <p:menuitem value="Juegos XBOX ONE" icon="ui-icon-circle-plus" url="#"/>
+                                <p:menuitem value="Juegos SWITCH" icon="ui-icon-circle-plus" url="#"/>
+                                <p:menuitem value="Juegos PC" icon="ui-icon-circle-plus" url="#"/>
+                                <p:menuitem value="Todas las Plataformas" icon="ui-icon-circle-plus" url="#"/>
+                            </p:submenu>
+                            <p:submenu label="Precio">
+                                <p:menuitem value="$0 - $10.000" icon="ui-icon-circle-plus" url="#"/>
+                                <p:menuitem value="$10.000 - $20.000" icon="ui-icon-circle-plus" url="#"/>
+                                <p:menuitem value="$20.000-$40.000" icon="ui-icon-circle-plus" url="#"/>
+                                <p:menuitem value="$40.000 - $100.000" icon="ui-icon-circle-plus" url="#"/>
+                                <p:menuitem value="$Todos los Precios" icon="ui-icon-circle-plus" url="#"/>
+                            </p:submenu>
+                            <p:submenu label="Fabricante">
+                                <p:menuitem value="Nintendo" icon="ui-icon-circle-plus" url="#"/>
+                                <p:menuitem value="Sony" icon="ui-icon-circle-plus" url="#"/>
+                                <p:menuitem value="Microsoft" icon="ui-icon-circle-plus" url="#"/>
+                                <p:menuitem value="Activision" icon="ui-icon-circle-plus" url="#"/>
+                                <p:menuitem value="Bethesda" icon="ui-icon-circle-plus" url="#"/>
+                                <p:menuitem value="EA" icon="ui-icon-circle-plus" url="#"/>
+                                <p:menuitem value="Square Enix" icon="ui-icon-circle-plus" url="#"/>
+                                <p:menuitem value="Blizzard" icon="ui-icon-circle-plus" url="#"/>
+                                <p:menuitem value="Todas las Marcas" icon="ui-icon-circle-plus" url="#"/>
+                            </p:submenu>
+                        </p:menu>
+
+            </div>
+            <div id="content">
+
+                <f:view>
+
+
+                    <h:form>
+                        <h1><h:outputText value="List"/></h1>
+                        <p:dataTable value="#{juegoController.listarJuegosPS4}" var="item">
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="IdJuego"/>
+                                </f:facet>
+                                <h:outputText value="#{item.idJuego}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Nombre"/>
+                                </f:facet>
+                                <h:outputText value="#{item.nombre}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="DescJuego"/>
+                                </f:facet>
+                                <h:outputText value="#{item.descJuego}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Valor"/>
+                                </f:facet>
+                                <h:outputText value="#{item.valor}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Fabricante"/>
+                                </f:facet>
+                                <h:outputText value="#{item.fabricante}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Idioma"/>
+                                </f:facet>
+                                <h:outputText value="#{item.idioma}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Subtitulos"/>
+                                </f:facet>
+                                <h:outputText value="#{item.subtitulos}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Online"/>
+                                </f:facet>
+                                <h:outputText value="#{item.online}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Cantidad"/>
+                                </f:facet>
+                                <h:outputText value="#{item.cantidad}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Foto"/>
+                                </f:facet>
+                                <h:outputText value="#{item.foto}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Categoria"/>
+                                </f:facet>
+                                <h:outputText value="#{item.categoria}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="EstadoJu"/>
+                                </f:facet>
+                                <h:outputText value="#{item.estadoJu}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Tipo"/>
+                                </f:facet>
+                                <h:outputText value="#{item.tipo}"/>
+                            </p:column>
+                        </p:dataTable>
+                    </h:form>
+                </f:view>
+
+
+            </div>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+
+            <div id="footer">
+
+                Copyright &copy; 2018 Cetecompra. All rights reserved. real hasta la muerte baby 
+            </div>
+        </div>
+
+    </h:body>
+</html>
