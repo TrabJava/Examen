@@ -20,7 +20,7 @@ body, html, table, tr, td, div {
 
 body {
 	background-color: #2F4254;
-	background-image: url(images/tile-bg.jpg);
+	background-image: url(../images/tile-bg.jpg);
 	text-align: center;
 }
 
@@ -76,7 +76,7 @@ hr {
 	color: #FFFFFF;
 	width: 152px;
 	height: 24px;
-	background-image: url(images/menu-header.jpg);
+	background-image: url(../images/menu-header.jpg);
 	text-align: center;
 	padding-top: 7px;
 	margin-bottom: 10px;
@@ -89,21 +89,21 @@ hr {
 
 #container {
 	width: 760px;
-	background-image: url(images/bg.jpg); 
+	background-image: url(../images/bg.jpg); 
 	margin: 0 auto;
 }
 
 #header {
 	width: 760px;
 	height: 138px;
-	background-image: url(images/header.jpg);
+	background-image: url(../images/header.jpg);
 	background-repeat: no-repeat;
 }
 
 #top-nav {
 	width: 760px;
 	height: 18px;
-	background-image: url(images/bar.jpg);
+	background-image: url(../images/bar.jpg);
 	background-repeat: no-repeat;
 	text-align: center;
 	padding-top: 3px;
@@ -113,7 +113,7 @@ hr {
 	float: left; 
 	width: 152px;
 	text-align: left;
-	background-image: url(images/left-bg.jpg); 
+	background-image: url(../images/left-bg.jpg); 
 	background-repeat: no-repeat;
 	padding-left: 9px;
 	padding-right: 9px;
@@ -131,7 +131,7 @@ hr {
 	float: right;
 	width: 571px; 
 	text-align: left;
-	background-image: url(images/right-bg.jpg); 
+	background-image: url(../images/right-bg.jpg); 
 	background-repeat: no-repeat;
 	padding: 9px;
 	line-height: 16px;
@@ -142,7 +142,7 @@ hr {
 	clear: both;
 	width: 760px;
 	height: 18px;
-	background-image: url(images/bar.jpg);
+	background-image: url(../images/bar.jpg);
 	background-repeat: no-repeat;
 	text-align: center;
 	padding-top: 3px;
