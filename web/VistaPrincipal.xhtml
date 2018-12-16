@@ -5,100 +5,88 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui">
     <h:head>
+        <h:outputStylesheet library="css" name="MenuFormato.css"/>
         <meta http-equiv="Content-type" content="text/html;charset=UTF-8" /> 
         <title>Website Name Here</title>
         <link rel="stylesheet" type="text/css" href="css/MenuFormato.css" />
     </h:head>
 
     <h:body>
-        
-        <h:form>  
-    <p:growl id="messages"/>
- 
-    <p:menubar>
-        <p:submenu label="File" icon="pi pi-file">
-            <p:submenu label="New" icon="pi pi-briefcase">
-                <p:menuitem value="Project" url="#" />
-                <p:menuitem value="Other" url="#" />
-            </p:submenu>
-            <p:menuitem value="Open" url="#" />
-            <p:separator />
-            <p:menuitem value="Quit" url="#" />
-        </p:submenu>
- 
-        <p:submenu label="Edit" icon="pi pi-pencil">
-            <p:menuitem value="Undo" url="#" icon="pi pi-angle-double-left" />
-            <p:menuitem value="Redo" url="#" icon="pi pi-angle-double-right" />
-        </p:submenu>
- 
-        <p:submenu label="Help" icon="pi pi-question">
-            <p:menuitem value="Contents" url="#" />
-            <p:submenu label="Search" icon="pi pi-search">
-                <p:submenu label="Text">
-                    <p:menuitem value="Workspace" url="#" />
-                </p:submenu>
-                <p:menuitem value="File" url="#" />
-            </p:submenu>
-        </p:submenu>
- 
-        <p:submenu label="Actions" icon="pi pi-cog">
-            <p:submenu label="Ajax" icon="pi pi-refresh">
-                <p:menuitem value="Save" action="#{menuView.save}" icon="pi pi-save" update="messages"/>
-                <p:menuitem value="Update" action="#{menuView.update}" icon="pi pi-refresh" update="messages"/>
-            </p:submenu>
-            <p:submenu label="Non-Ajax" icon="pi pi-clone">
-                <p:menuitem value="Delete" action="#{menuView.delete}" icon="pi pi-times" update="messages" ajax="false"/>
-            </p:submenu>
-        </p:submenu>
- 
-        <p:menuitem value="Quit" url="http://www.primefaces.org" icon="pi pi-times" />
- 
-        <f:facet name="options">
-            <p:inputText style="margin:1px 10px 1px 1px;" placeholder="Search"/>
-            <p:commandButton type="button" value="Logout" icon="pi pi-home" />
-        </f:facet>
-    </p:menubar>
-</h:form>
-
         <div id="container">
             <div id="header"></div>
-            <div id="top-nav"><a href="/">Inicio</a> :: <a href="/">Ps4</a> :: <a href="/">Xbox One</a> :: <a href="/">Switch</a> :: <a href="/">Pc</a> ::</div>
+        <p:menubar id="top-nav">
+                    <p:submenu label="Plataforma">
+                        <p:menuitem value="Juegos PS4" icon=" ui-icon-circle-plus" url="#"/>
+                        <p:menuitem value="Juegos XBOX ONE" icon="ui-icon-circle-plus" url="#"/>
+                        <p:menuitem value="Juegos SWITCH" icon="ui-icon-circle-plus" url="#"/>
+                        <p:menuitem value="Juegos PC" icon="ui-icon-circle-plus" url="#"/>
+                        <p:menuitem value="Todas las Plataformas" icon="ui-icon-circle-plus" url="#"/>
+                    </p:submenu>
+                    <p:submenu label="Precio">
+                        <p:menuitem value="$0 - $10.000" icon="ui-icon-circle-plus" url="#"/>
+                        <p:menuitem value="$10.000 - $20.000" icon="ui-icon-circle-plus" url="#"/>
+                        <p:menuitem value="$20.000-$40.000" icon="ui-icon-circle-plus" url="#"/>
+                        <p:menuitem value="$40.000 - $100.000" icon="ui-icon-circle-plus" url="#"/>
+                        <p:menuitem value="$Todos los Precios" icon="ui-icon-circle-plus" url="#"/>
+                    </p:submenu>
+                    <p:submenu label="Fabricante">
+                        <p:menuitem value="Nintendo" icon="ui-icon-circle-plus" url="#"/>
+                        <p:menuitem value="Sony" icon="ui-icon-circle-plus" url="#"/>
+                        <p:menuitem value="Microsoft" icon="ui-icon-circle-plus" url="#"/>
+                        <p:menuitem value="Activision" icon="ui-icon-circle-plus" url="#"/>
+                        <p:menuitem value="Bethesda" icon="ui-icon-circle-plus" url="#"/>
+                        <p:menuitem value="EA" icon="ui-icon-circle-plus" url="#"/>
+                        <p:menuitem value="Square Enix" icon="ui-icon-circle-plus" url="#"/>
+                        <p:menuitem value="Blizzard" icon="ui-icon-circle-plus" url="#"/>
+                        <p:menuitem value="Todas las Marcas" icon="ui-icon-circle-plus" url="#"/>
+                    </p:submenu>
+                </p:menubar>
+        </div>
+        <br></br>
+
+        <div id="container">
+            
+            
+            
+            
+            
+            
             <div id="primary">
 
                 <p:menu>
-                            <p:submenu label="Plataforma">
-                                <p:menuitem value="Juegos PS4" icon=" ui-icon-circle-plus" url="#"/>
-                                <p:menuitem value="Juegos XBOX ONE" icon="ui-icon-circle-plus" url="#"/>
-                                <p:menuitem value="Juegos SWITCH" icon="ui-icon-circle-plus" url="#"/>
-                                <p:menuitem value="Juegos PC" icon="ui-icon-circle-plus" url="#"/>
-                                <p:menuitem value="Todas las Plataformas" icon="ui-icon-circle-plus" url="#"/>
-                            </p:submenu>
-                            <p:submenu label="Precio">
-                                <p:menuitem value="$0 - $10.000" icon="ui-icon-circle-plus" url="#"/>
-                                <p:menuitem value="$10.000 - $20.000" icon="ui-icon-circle-plus" url="#"/>
-                                <p:menuitem value="$20.000-$40.000" icon="ui-icon-circle-plus" url="#"/>
-                                <p:menuitem value="$40.000 - $100.000" icon="ui-icon-circle-plus" url="#"/>
-                                <p:menuitem value="$Todos los Precios" icon="ui-icon-circle-plus" url="#"/>
-                            </p:submenu>
-                            <p:submenu label="Fabricante">
-                                <p:menuitem value="Nintendo" icon="ui-icon-circle-plus" url="#"/>
-                                <p:menuitem value="Sony" icon="ui-icon-circle-plus" url="#"/>
-                                <p:menuitem value="Microsoft" icon="ui-icon-circle-plus" url="#"/>
-                                <p:menuitem value="Activision" icon="ui-icon-circle-plus" url="#"/>
-                                <p:menuitem value="Bethesda" icon="ui-icon-circle-plus" url="#"/>
-                                <p:menuitem value="EA" icon="ui-icon-circle-plus" url="#"/>
-                                <p:menuitem value="Square Enix" icon="ui-icon-circle-plus" url="#"/>
-                                <p:menuitem value="Blizzard" icon="ui-icon-circle-plus" url="#"/>
-                                <p:menuitem value="Todas las Marcas" icon="ui-icon-circle-plus" url="#"/>
-                            </p:submenu>
-                        </p:menu>
+                    <p:submenu label="Plataforma">
+                        <p:menuitem value="Juegos PS4" icon=" ui-icon-circle-plus" url="#"/>
+                        <p:menuitem value="Juegos XBOX ONE" icon="ui-icon-circle-plus" url="#"/>
+                        <p:menuitem value="Juegos SWITCH" icon="ui-icon-circle-plus" url="#"/>
+                        <p:menuitem value="Juegos PC" icon="ui-icon-circle-plus" url="#"/>
+                        <p:menuitem value="Todas las Plataformas" icon="ui-icon-circle-plus" url="#"/>
+                    </p:submenu>
+                    <p:submenu label="Precio">
+                        <p:menuitem value="$0 - $10.000" icon="ui-icon-circle-plus" url="#"/>
+                        <p:menuitem value="$10.000 - $20.000" icon="ui-icon-circle-plus" url="#"/>
+                        <p:menuitem value="$20.000-$40.000" icon="ui-icon-circle-plus" url="#"/>
+                        <p:menuitem value="$40.000 - $100.000" icon="ui-icon-circle-plus" url="#"/>
+                        <p:menuitem value="$Todos los Precios" icon="ui-icon-circle-plus" url="#"/>
+                    </p:submenu>
+                    <p:submenu label="Fabricante">
+                        <p:menuitem value="Nintendo" icon="ui-icon-circle-plus" url="#"/>
+                        <p:menuitem value="Sony" icon="ui-icon-circle-plus" url="#"/>
+                        <p:menuitem value="Microsoft" icon="ui-icon-circle-plus" url="#"/>
+                        <p:menuitem value="Activision" icon="ui-icon-circle-plus" url="#"/>
+                        <p:menuitem value="Bethesda" icon="ui-icon-circle-plus" url="#"/>
+                        <p:menuitem value="EA" icon="ui-icon-circle-plus" url="#"/>
+                        <p:menuitem value="Square Enix" icon="ui-icon-circle-plus" url="#"/>
+                        <p:menuitem value="Blizzard" icon="ui-icon-circle-plus" url="#"/>
+                        <p:menuitem value="Todas las Marcas" icon="ui-icon-circle-plus" url="#"/>
+                    </p:submenu>
+                </p:menu>
 
             </div>
             <div id="content">
 
 
             </div>
-       
+
 
             <div id="footer">
 
