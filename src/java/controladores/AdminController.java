@@ -245,7 +245,7 @@ public class AdminController implements Serializable {
                 redireccion = "/index";
                 session.setAttribute("usuarioAdmin", ad.getUser());
                 session.setAttribute("contraseniaAdmin", ad.getPass());
-                session.setAttribute("estadoAdmin", ad.getEstadoAdmin());
+                session.setAttribute("estadoAdmin", ad.getEstadoAdmin().getIdEstadoadmin());
             }else{
                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,"Aviso","Credenciales incorrectas"));
         
@@ -264,7 +264,7 @@ public class AdminController implements Serializable {
         session.removeAttribute("usuarioAdmin");
         session.removeAttribute("contraseniaAdmin");
         session.removeAttribute("estadoAdmin");
-        redireccion = "/VistaPrincipal";
+        redireccion = "/loginAdmin";
         
         return redireccion;
     }
