@@ -43,8 +43,7 @@
             </h:panelGroup>
             <h:form>
                 <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.EditCompraLabel_idCompra}" for="idCompra" />
-                    <h:inputText id="idCompra" value="#{compraController.selected.idCompra}" title="#{bundle.EditCompraTitle_idCompra}" required="true" requiredMessage="#{bundle.EditCompraRequiredMessage_idCompra}"/>
+                    
                     <h:outputLabel value="#{bundle.EditCompraLabel_codigoCom}" for="codigoCom" />
                     <h:selectOneMenu id="codigoCom" value="#{compraController.selected.codigoCom}" title="#{bundle.EditCompraTitle_codigoCom}" required="true" requiredMessage="#{bundle.EditCompraRequiredMessage_codigoCom}">
                         <f:selectItems value="#{codigoController.itemsAvailableSelectOne}"/>
