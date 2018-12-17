@@ -8,7 +8,7 @@
         <h:outputStylesheet library="css" name="MenuFormato.css"/>
         <meta http-equiv="Content-type" content="text/html;charset=UTF-8" /> 
         <title>Website Name Here</title>
-        <link rel="stylesheet" type="text/css" href="css/MenuFormato.css" />
+        <link rel="stylesheet" type="text/css" href="resources/css/MenuFormato.css" />
     </h:head>
 
     <h:body>
@@ -40,7 +40,15 @@
                         <p:menuitem value="Blizzard" icon="ui-icon-circle-plus" url="#"/>
                         <p:menuitem value="Todas las Marcas" icon="ui-icon-circle-plus" url="#"/>
                     </p:submenu>
+            
+                 <f:facet name="options">
+            <p:inputText style="width: 110px; height: 15px;" placeholder="Usuario"/>
+            <p:inputText style="width: 110px; height: 15px;" placeholder="Contraseñia"/>
+            <p:commandButton style="height: 30px" type="button" value="Log In" icon="pi pi-home" />
+        </f:facet>
+            
                 </p:menubar>
+            
         </div>
         <br></br>
 
