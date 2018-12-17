@@ -1,5 +1,6 @@
 package controladores;
 
+import static com.sun.corba.se.spi.presentation.rmi.StubAdapter.request;
 import modelo.dto.Usuario;
 import controladores.util.JsfUtil;
 import controladores.util.PaginationHelper;
@@ -19,6 +20,7 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
+import javax.servlet.http.HttpSession;
 
 @Named("usuarioController")
 @SessionScoped
@@ -242,8 +244,12 @@ public class UsuarioController implements Serializable {
         String redireccion = null;
         try {
           us = ejbFacade.existeUsuario(current);
+          HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
             if (us!=null) {
                 redireccion = "/index";
+                session.setAttribute("usuario", us.getUser());
+                session.setAttribute("contrasenia", us.getPass());
+                session.setAttribute("estado", us.getEstadoUser());
             }else{
                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,"Aviso","Credenciales incorrectas"));
         
