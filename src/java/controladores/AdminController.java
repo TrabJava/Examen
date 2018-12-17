@@ -1,5 +1,6 @@
 package controladores;
 
+import static com.sun.corba.se.spi.presentation.rmi.StubAdapter.request;
 import modelo.dto.Admin;
 import controladores.util.JsfUtil;
 import controladores.util.PaginationHelper;
@@ -242,9 +243,9 @@ public class AdminController implements Serializable {
           HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
             if (ad!=null) {
                 redireccion = "/index";
-                session.setAttribute("usuario", ad.getUser());
-                session.setAttribute("contrasenia", ad.getPass());
-                session.setAttribute("estado", ad.getEstadoAdmin());
+                session.setAttribute("usuarioAdmin", ad.getUser());
+                session.setAttribute("contraseniaAdmin", ad.getPass());
+                session.setAttribute("estadoAdmin", ad.getEstadoAdmin());
             }else{
                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,"Aviso","Credenciales incorrectas"));
         
@@ -253,6 +254,18 @@ public class AdminController implements Serializable {
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Aviso","ERROR!"));
         }
+        return redireccion;
+    }
+    
+    public String cerrarSesion(){
+        String redireccion = null;
+        
+        HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+        session.removeAttribute("usuarioAdmin");
+        session.removeAttribute("contraseniaAdmin");
+        session.removeAttribute("estadoAdmin");
+        redireccion = "/VistaPrincipal";
+        
         return redireccion;
     }
 
