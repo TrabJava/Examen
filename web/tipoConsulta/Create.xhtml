@@ -3,14 +3,42 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
             <h:outputText value="#{bundle.CreateTipoConsultaTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
+            
+             <c:choose>
+            <c:when test="${usuario == null and usuarioAdmin==null  }">
+                <h1> Tienes que iniciar sesión como Administrador Primero</h1>
+                <h:link outcome="/loginAdmin.xhtml" value="Login" />
+            </c:when>
+            <c:when test="${usuario!=null and estado==1 and usuarioAdmin==null }">
+                <h1>Credenciales Incorrectas</h1>
+                <h:link outcome="/login.xhtml" value="Login" />
+            </c:when>
+            <c:when test="${estado!=1 and usuario!=null and usuarioAdmin==null and estadoAdmin!=1 }">
+                <h1> Tu cuenta no esta activada y/o no son las credenciales correctas :c</h1>
+                <h:link outcome="/login.xhtml" value="Login" />
+            </c:when>
+            <c:when test="${estadoAdmin!=1}">
+                <h1> Tu cuenta no esta activada :c</h1>
+                <h:link outcome="/loginAdmin.xhtml" value="Login Admin" />
+            </c:when>
+            <c:when test="${usuarioAdmin==null}">
+                <h1> Tienes que iniciar sesión como Administrador Primero</h1>
+                <h:link outcome="/loginAdmin.xhtml" value="Login Admin" />
+            </c:when>
+            <c:when test="${usuarioAdmin!=null and estadoAdmin==1}">
+                <ui:include src="../Menú_Admin.xhtml" />
+                <br></br>
+                <br></br>
+                <br></br>
+                 <h:panelGroup id="messagePanel" layout="block">
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
             <h:form>
@@ -29,6 +57,11 @@
                 <br />
                 <h:link outcome="/index" value="#{bundle.CreateTipoConsultaIndexLink}"/>
             </h:form>
+            </c:when>
+
+        </c:choose>
+            
+           
         </ui:define>
     </ui:composition>
 
