@@ -25,6 +25,10 @@
             <c:when test="${administrador!= null}">
                 <ui:include src="Menú_Admin.xhtml" />
             </c:when>
+            <c:when test="${estado!= 1}">
+                <h1> Tienes que iniciar sesión como Administrador Primero</h1>
+                <h:link outcome="/login.xhtml" value="Login" />
+            </c:when>
 
 
         </c:choose>
