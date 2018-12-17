@@ -10,7 +10,8 @@ and open the template in the editor.
 
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>TODO supply a title</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -49,6 +50,29 @@ and open the template in the editor.
                     <p:menuitem value="Todas las Marcas" icon="ui-icon-circle-plus" url="#"/>
                 </p:submenu>
             </p:menu>
+            
+            <h:dataTable var="j" value="#{juegoController.items}" border="1" cellpadding="2" cellspacing="2">
+                <h:column>
+                <f:facet name="header">Nombre</f:facet>
+                <h:outputText value="#{j.nombre}"></h:outputText>
+                </h:column>
+                <h:column>
+                <f:facet name="header">Descripcion</f:facet>
+                <h:outputText value="#{j.descJuego}"></h:outputText>
+                </h:column>
+                <h:column>
+                <f:facet name="header">Valor</f:facet>
+                <h:outputText value="#{j.valor}"></h:outputText>
+                </h:column>
+                <h:column>
+                <f:facet name="header">Idioma</f:facet>
+                <h:outputText value="#{j.idioma}"></h:outputText>
+                </h:column>
+                <h:column>
+                <f:facet name="header">Plataforma</f:facet>
+                <h:outputText value="#{j.tipo.dscTipo}"></h:outputText>
+                </h:column>
+            </h:dataTable>
         </h:form>
     </h:body>
 </html>
