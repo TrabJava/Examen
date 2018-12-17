@@ -35,7 +35,7 @@
                 <h:link outcome="/loginAdmin.xhtml" value="Login Admin" />
             </c:when>
             <c:when test="${usuarioAdmin!=null and estadoAdmin==1}">
-                <ui:include src="Menú_Admin.xhtml" />
+                <ui:include src="../Menú_Admin.xhtml" />
                  <h:panelGroup id="messagePanel" layout="block">
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>

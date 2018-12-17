@@ -38,37 +38,51 @@
                 <br></br>
                 <br></br>
                 <br></br>
-                 <c:choose>
-            <c:when test="${usuario == null and usuarioAdmin==null  }">
-                <h1> Tienes que iniciar sesión como Administrador Primero</h1>
-                <h:link outcome="/loginAdmin.xhtml" value="Login" />
-            </c:when>
-            <c:when test="${usuario!=null and estado==1 and usuarioAdmin==null }">
-                <h1>Credenciales Incorrectas</h1>
-                <h:link outcome="/login.xhtml" value="Login" />
-            </c:when>
-            <c:when test="${estado!=1 and usuario!=null and usuarioAdmin==null and estadoAdmin!=1 }">
-                <h1> Tu cuenta no esta activada y/o no son las credenciales correctas :c</h1>
-                <h:link outcome="/login.xhtml" value="Login" />
-            </c:when>
-            <c:when test="${estadoAdmin!=1}">
-                <h1> Tu cuenta no esta activada :c</h1>
-                <h:link outcome="/loginAdmin.xhtml" value="Login Admin" />
-            </c:when>
-            <c:when test="${usuarioAdmin==null}">
-                <h1> Tienes que iniciar sesión como Administrador Primero</h1>
-                <h:link outcome="/loginAdmin.xhtml" value="Login Admin" />
-            </c:when>
-            <c:when test="${usuarioAdmin!=null and estadoAdmin==1}">
-                <ui:include src="Menú_Admin.xhtml" />
-            </c:when>
-
-        </c:choose>
+                 <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListTipoConsultaEmpty}" rendered="#{tipoConsultaController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{tipoConsultaController.items.rowCount > 0}">
+                    <h:outputText value="#{tipoConsultaController.pagination.pageFirstItem + 1}..#{tipoConsultaController.pagination.pageLastItem + 1}/#{tipoConsultaController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{tipoConsultaController.previous}" value="#{bundle.Previous} #{tipoConsultaController.pagination.pageSize}" rendered="#{tipoConsultaController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{tipoConsultaController.next}" value="#{bundle.Next} #{tipoConsultaController.pagination.pageSize}" rendered="#{tipoConsultaController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{tipoConsultaController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTipoConsultaTitle_idTipoconsulta}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idTipoconsulta}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTipoConsultaTitle_descTipoconsulta}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.descTipoconsulta}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{tipoConsultaController.prepareView}" value="#{bundle.ListTipoConsultaViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{tipoConsultaController.prepareEdit}" value="#{bundle.ListTipoConsultaEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{tipoConsultaController.destroy}" value="#{bundle.ListTipoConsultaDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{tipoConsultaController.prepareCreate}" value="#{bundle.ListTipoConsultaCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListTipoConsultaIndexLink}"/>
+            </h:form>
             </c:when>
 
         </c:choose>
             
-            
+           
         </ui:define>
     </ui:composition>
 
