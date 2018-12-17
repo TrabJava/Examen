@@ -1,37 +1,51 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
     <h:head>
         <title>Facelet Title Holi</title>
         <h:outputStylesheet name="css/jsfcrud.css"/>
     </h:head>
     <h:body>
         <c:choose>
-            <c:when test="${usuario== null}">
+            <c:when test="${usuario == null and usuarioAdmin==null  }">
                 <h1> Tienes que iniciar sesión como Administrador Primero</h1>
+                <h:link outcome="/loginAdmin.xhtml" value="Login" />
+            </c:when>
+            <c:when test="${usuario!=null and estado==1 and usuarioAdmin==null }">
+                <h1>Credenciales Incorrectas</h1>
                 <h:link outcome="/login.xhtml" value="Login" />
             </c:when>
-            <c:when test="${estado!= 1}">
+            <c:when test="${estado!=1 and usuario!=null and usuarioAdmin==null and estadoAdmin!=1 }">
+                <h1> Tu cuenta no esta activada y/o no son las credenciales correctas :c</h1>
+                <h:link outcome="/login.xhtml" value="Login" />
+            </c:when>
+            <c:when test="${estadoAdmin!=1}">
                 <h1> Tu cuenta no esta activada :c</h1>
-                <h:link outcome="/login.xhtml" value="Login" />
+                <h:link outcome="/loginAdmin.xhtml" value="Login Admin" />
             </c:when>
-            <c:when test="${administrador!= null}">
+            <c:when test="${usuarioAdmin==null}">
+                <h1> Tienes que iniciar sesión como Administrador Primero</h1>
+                <h:link outcome="/loginAdmin.xhtml" value="Login Admin" />
+            </c:when>
+            <c:when test="${usuarioAdmin!=null and estadoAdmin==1}">
                 <ui:include src="Menú_Admin.xhtml" />
             </c:when>
-            <c:when test="${estado!= 1}">
-                <h1> Tienes que iniciar sesión como Administrador Primero</h1>
-                <h:link outcome="/login.xhtml" value="Login" />
-            </c:when>
-
 
         </c:choose>
+
+        ${usuarioAdmin}
+        ${contraseniaAdmin}
+        ${estadoAdmin}
+
+        ${usuario}
+        ${contrasenia}
+        ${estado}
+
+
 
     </h:body>
 </html>
