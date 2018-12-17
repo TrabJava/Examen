@@ -4,7 +4,8 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
 
 
@@ -15,7 +16,35 @@
     </h:head>
 
     <h:body>
-        <h:form>
+        
+        
+        
+        <c:choose>
+            <c:when test="${usuario == null and usuarioAdmin==null  }">
+                <h1> Tienes que iniciar sesión como Administrador Primero</h1>
+                <h:link outcome="/loginAdmin.xhtml" value="Login" />
+            </c:when>
+            <c:when test="${usuario!=null and estado==1 and usuarioAdmin==null }">
+                <h1>Credenciales Incorrectas</h1>
+                <h:link outcome="/login.xhtml" value="Login" />
+            </c:when>
+            <c:when test="${estado!=1 and usuario!=null and usuarioAdmin==null and estadoAdmin!=1 }">
+                <h1> Tu cuenta no esta activada y/o no son las credenciales correctas :c</h1>
+                <h:link outcome="/login.xhtml" value="Login" />
+            </c:when>
+            <c:when test="${estadoAdmin!=1}">
+                <h1> Tu cuenta no esta activada :c</h1>
+                <h:link outcome="/loginAdmin.xhtml" value="Login Admin" />
+            </c:when>
+            <c:when test="${usuarioAdmin==null}">
+                <h1> Tienes que iniciar sesión como Administrador Primero</h1>
+                <h:link outcome="/loginAdmin.xhtml" value="Login Admin" />
+            </c:when>
+            <c:when test="${usuarioAdmin!=null and estadoAdmin==1}">
+                <br></br>
+                <br></br>
+                <br></br>
+                <h:form>
             <div id="container">
 
                 <div id="header"></div>
@@ -144,6 +173,19 @@
             </div>
 
         </div> 
+            </c:when>
+
+        </c:choose>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
 
 
     </h:body>
