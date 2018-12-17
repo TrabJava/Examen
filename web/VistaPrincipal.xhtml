@@ -73,21 +73,53 @@
                             paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                             rowsPerPageTemplate="6,12,16">
 
-                    <h:panelGrid columns="1" cellpadding="5">
-                        <p:graphicImage style="width: 200px; height: 250px;"  value="images/#{item.foto}" onclick="PF('dlg2').show();"/> 
-                        
+                    <h:panelGrid columns="1" cellpadding="5" border="1">
+                        <h:outputText value="$#{item.valor}" />
+                        <p:graphicImage style="width: 200px; height: 250px;"  value="images/#{item.foto}"/> 
+                        <p:commandLink value="Detalles" oncomplete="PF('dlg2').show();" update="dialogo"></p:commandLink>
+                        <h:commandLink action="#{juegoController.destroy}" value="Comprar"/>
                     </h:panelGrid>
 
-                    
-                    <p:dialog header="#{item.nombre}" widgetVar="dlg2" modal="true" height="100">
-                       <h:outputText value="#{item.nombre}"/>
-                        
+
+                    <p:dialog id="dialogo" header="#{item.nombre}" widgetVar="dlg2" modal="true" height="250">
+                        <h:outputText value="#{bundle.ListJuegoTitle_nombre}"/>
+                        <h:outputText value="#{item.nombre}"/>
+                        <br></br>
+                        <h:outputText value="#{bundle.ListJuegoTitle_descJuego}"/>
+                        <h:outputText value="#{item.descJuego}"/>
+                        <br></br>
+                        <h:outputText value="#{bundle.ListJuegoTitle_valor}"/>
                         <h:outputText value="$#{item.valor}" />
-                        <h:commandLink action="#{juegoController.destroy}" value="Comprar"/>
+                        <br></br>
+                        <h:outputText value="#{bundle.ListJuegoTitle_fabricante}"/>
+                        <h:outputText value="#{item.fabricante}"/>
+                        <br></br>
+                        <h:outputText value="#{bundle.ListJuegoTitle_idioma}"/>
+                        <h:outputText value="#{item.idioma}"/>
+                        <br></br>
+                        <h:outputText value="#{bundle.ListJuegoTitle_subtitulos}"/>
+                        <h:outputText value="#{item.subtitulos}"/>
+                        <br></br>
+                        <h:outputText value="#{bundle.ListJuegoTitle_online}"/>
+                        <h:outputText value="#{item.online}"/>
+                        <br></br>
+                        <h:outputText value="#{bundle.ListJuegoTitle_cantidad}"/>
+                        <h:outputText value="#{item.cantidad}"/>
+                        <br></br>
+                        <h:outputText value="#{bundle.ListJuegoTitle_categoria}"/>
+                        <h:outputText value="#{item.categoria.descCategoria}"/>
+                        <br></br>
+                        <h:outputText value="#{bundle.ListJuegoTitle_estadoJu}"/>
+                        <h:outputText value="#{item.estadoJu.descEstadoju}"/>
+                        <br></br>
+                        <h:outputText value="#{bundle.ListJuegoTitle_tipo}"/>
+                        <h:outputText value="#{item.tipo.dscTipo}"/>
+
+
                     </p:dialog> 
 
 
-                    
+
 
 
                 </p:dataGrid>
