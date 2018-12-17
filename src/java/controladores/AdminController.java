@@ -264,6 +264,9 @@ public class AdminController implements Serializable {
         session.removeAttribute("usuarioAdmin");
         session.removeAttribute("contraseniaAdmin");
         session.removeAttribute("estadoAdmin");
+        session.removeAttribute("usuario");
+        session.removeAttribute("contrasenia");
+        session.removeAttribute("estado");
         redireccion = "/loginAdmin";
         
         return redireccion;
