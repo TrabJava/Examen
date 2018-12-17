@@ -4,16 +4,31 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-    xmlns:h="http://xmlns.jcp.org/jsf/html"
-    xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Facelet Title Holi</title>
         <h:outputStylesheet name="css/jsfcrud.css"/>
     </h:head>
     <h:body>
-        <ui:include src="Menú_Admin.xhtml" />
-        <br />
-       
+        <c:choose>
+            <c:when test="${usuario== null}">
+                <h1> Tienes que iniciar sesión como Administrador Primero</h1>
+                <h:link outcome="/login.xhtml" value="Login" />
+            </c:when>
+            <c:when test="${estado!= 1}">
+                <h1> Tu cuenta no esta activada :c</h1>
+                <h:link outcome="/login.xhtml" value="Login" />
+            </c:when>
+            <c:when test="${administrador!= null}">
+                <ui:include src="Menú_Admin.xhtml" />
+            </c:when>
+
+
+        </c:choose>
+
     </h:body>
 </html>
 
