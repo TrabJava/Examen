@@ -5,6 +5,7 @@
  */
 package modelo.dao;
 
+import java.sql.ResultSet;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -47,4 +48,5 @@ public class UsuarioFacade extends AbstractFacade<Usuario> {
         }
         return usuario;
     }
+  
 }
