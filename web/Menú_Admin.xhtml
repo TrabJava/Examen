@@ -76,12 +76,14 @@ and open the template in the editor.
                     <p:menuitem value="Administrar Usuario" outcome="/usuario/List.xhtml" />
                 </p:submenu>
 
-              
+              <f:facet name="options">
+                  <p:commandButton icon="ui-icon-key" value="Cerrar Sesion" action="#{adminController.cerrarSesion()}"/>
+        </f:facet>
 
-                <p:menuitem value="Cerrar Sesion" url="" />
 
 
             </p:menubar>
         </h:form>
+        ${usuarioAdmin}
     </h:body>
 </html>
