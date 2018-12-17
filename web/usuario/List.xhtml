@@ -3,22 +3,64 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
 
-    <ui:composition template="/template.xhtml">
-        <ui:define name="title">
-            <h:outputText value="#{bundle.ListUsuarioTitle}"></h:outputText>
-        </ui:define>
-        <ui:define name="body">
+
+        <h:outputStylesheet library="css" name="MenuFormato.css"/>
+        <meta http-equiv="Content-type" content="text/html;charset=UTF-8" /> 
+        <title>Website Name Here</title>
+        <link rel="stylesheet" type="text/css" href="../resources/css/MenuFormato.css" />
+    </h:head>
+
+    <h:body>
+        <h:form>
+            <div id="container">
+
+                <div id="header"></div>
+                <p:menubar id="top-nav">
+                    <p:submenu label="Plataforma">
+                        <p:menuitem value="Juegos PS4" icon=" ui-icon-circle-plus" url="#"/>
+                        <p:menuitem value="Juegos XBOX ONE" icon="ui-icon-circle-plus" url="#"/>
+                        <p:menuitem value="Juegos SWITCH" icon="ui-icon-circle-plus" url="#"/>
+                        <p:menuitem value="Juegos PC" icon="ui-icon-circle-plus" url="#"/>
+                        <p:menuitem value="Todas las Plataformas" icon="ui-icon-circle-plus" url="#"/>
+                    </p:submenu>
+                    <p:submenu label="Precio">
+                        <p:menuitem value="$0 - $10.000" icon="ui-icon-circle-plus" url="#"/>
+                        <p:menuitem value="$10.000 - $20.000" icon="ui-icon-circle-plus" url="#"/>
+                        <p:menuitem value="$20.000-$40.000" icon="ui-icon-circle-plus" url="#"/>
+                        <p:menuitem value="$40.000 - $100.000" icon="ui-icon-circle-plus" url="#"/>
+                        <p:menuitem value="$Todos los Precios" icon="ui-icon-circle-plus" url="#"/>
+                    </p:submenu>
+                    <p:submenu label="Fabricante">
+                        <p:menuitem value="Nintendo" icon="ui-icon-circle-plus" url="#"/>
+                        <p:menuitem value="Sony" icon="ui-icon-circle-plus" url="#"/>
+                        <p:menuitem value="Microsoft" icon="ui-icon-circle-plus" url="#"/>
+                        <p:menuitem value="Activision" icon="ui-icon-circle-plus" url="#"/>
+                        <p:menuitem value="Bethesda" icon="ui-icon-circle-plus" url="#"/>
+                        <p:menuitem value="EA" icon="ui-icon-circle-plus" url="#"/>
+                        <p:menuitem value="Square Enix" icon="ui-icon-circle-plus" url="#"/>
+                        <p:menuitem value="Blizzard" icon="ui-icon-circle-plus" url="#"/>
+                        <p:menuitem value="Todas las Marcas" icon="ui-icon-circle-plus" url="#"/>
+                    </p:submenu>
+                </p:menubar>
+
+            </div>
+        </h:form>
+        <br></br>
+
+        <div id="container">
+
+
+
             <h:form styleClass="jsfcrud_list_form">
                 <h:panelGroup id="messagePanel" layout="block">
                     <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
                 </h:panelGroup>
                 <h:outputText escape="false" value="#{bundle.ListUsuarioEmpty}" rendered="#{usuarioController.items.rowCount == 0}"/>
                 <h:panelGroup rendered="#{usuarioController.items.rowCount > 0}">
-                    <h:outputText value="#{usuarioController.pagination.pageFirstItem + 1}..#{usuarioController.pagination.pageLastItem + 1}/#{usuarioController.pagination.itemsCount}"/>&nbsp;
-                    <h:commandLink action="#{usuarioController.previous}" value="#{bundle.Previous} #{usuarioController.pagination.pageSize}" rendered="#{usuarioController.pagination.hasPreviousPage}"/>&nbsp;
-                    <h:commandLink action="#{usuarioController.next}" value="#{bundle.Next} #{usuarioController.pagination.pageSize}" rendered="#{usuarioController.pagination.hasNextPage}"/>&nbsp;
                     <h:dataTable value="#{usuarioController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
                         <h:column>
                             <f:facet name="header">
@@ -86,7 +128,23 @@
                 <br />
                 <h:link outcome="/index" value="#{bundle.ListUsuarioIndexLink}"/>
             </h:form>
-        </ui:define>
-    </ui:composition>
 
+
+
+
+
+
+
+
+
+
+            <div id="footer" >
+
+                Copyright &copy; 2018 Cetecompra. All rights reserved. real hasta la muerte baby 
+            </div>
+
+        </div> 
+
+
+    </h:body>
 </html>
