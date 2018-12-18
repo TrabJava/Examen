@@ -11,7 +11,11 @@
             <h:outputText value="#{bundle.EditTicketTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            
+            <h:outputScript library="Jss" name="SoloNumeroesYPuntos.js"></h:outputScript>
+            <h:outputScript library="Jss" name="Solo_LetrasJS.js"></h:outputScript>
+            <h:outputScript library="Jss" name="TodoMenosEspacios.js"></h:outputScript>
+            <h:outputScript library="Jss" name="SoloNumerosss.js"></h:outputScript>
+            <h:outputScript library="Jss" name="Letras_Numeros_Espacio.js"></h:outputScript>
             <c:choose>
             <c:when test="${usuario == null and usuarioAdmin==null  }">
                 <h1> Tienes que iniciar sesión como Administrador Primero</h1>
@@ -43,14 +47,13 @@
             </h:panelGroup>
             <h:form>
                 <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.EditTicketLabel_idTicket}" for="idTicket" />
-                    <h:inputText id="idTicket" value="#{ticketController.selected.idTicket}" title="#{bundle.EditTicketTitle_idTicket}" required="true" requiredMessage="#{bundle.EditTicketRequiredMessage_idTicket}"/>
+                    
                     <h:outputLabel value="#{bundle.EditTicketLabel_numero}" for="numero" />
-                    <h:inputText id="numero" value="#{ticketController.selected.numero}" title="#{bundle.EditTicketTitle_numero}" required="true" requiredMessage="#{bundle.EditTicketRequiredMessage_numero}"/>
+                    <h:inputText id="numero" value="#{ticketController.selected.numero}" title="#{bundle.EditTicketTitle_numero}" required="true" requiredMessage="#{bundle.EditTicketRequiredMessage_numero}" onblur="limpia()"  onkeypress="return soloNumeros(event)"/>
                     <h:outputLabel value="#{bundle.EditTicketLabel_consulta}" for="consulta" />
-                    <h:inputText id="consulta" value="#{ticketController.selected.consulta}" title="#{bundle.EditTicketTitle_consulta}" required="true" requiredMessage="#{bundle.EditTicketRequiredMessage_consulta}"/>
+                    <h:inputText id="consulta" value="#{ticketController.selected.consulta}" title="#{bundle.EditTicketTitle_consulta}" required="true" requiredMessage="#{bundle.EditTicketRequiredMessage_consulta}" onblur="limpia()"  onkeypress="return Letras_espacio_numeros(event)"/>
                     <h:outputLabel value="#{bundle.EditTicketLabel_respuesta}" for="respuesta" />
-                    <h:inputText id="respuesta" value="#{ticketController.selected.respuesta}" title="#{bundle.EditTicketTitle_respuesta}" required="true" requiredMessage="#{bundle.EditTicketRequiredMessage_respuesta}"/>
+                    <h:inputText id="respuesta" value="#{ticketController.selected.respuesta}" title="#{bundle.EditTicketTitle_respuesta}" required="true" requiredMessage="#{bundle.EditTicketRequiredMessage_respuesta}" onblur="limpia()"  onkeypress="return Letras_espacio_numeros(event)"/>
                     <h:outputLabel value="#{bundle.EditTicketLabel_tipoCon}" for="tipoCon" />
                     <h:selectOneMenu id="tipoCon" value="#{ticketController.selected.tipoCon}" title="#{bundle.EditTicketTitle_tipoCon}" required="true" requiredMessage="#{bundle.EditTicketRequiredMessage_tipoCon}">
                         <f:selectItems value="#{tipoConsultaController.itemsAvailableSelectOne}"/>
