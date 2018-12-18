@@ -11,6 +11,10 @@
             <h:outputText value="#{bundle.CreateCodigoTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
+            <h:outputScript library="Jss" name="SoloNumeroesYPuntos.js"></h:outputScript>
+            <h:outputScript library="Jss" name="Solo_LetrasJS.js"></h:outputScript>
+            <h:outputScript library="Jss" name="TodoMenosEspacios.js"></h:outputScript>
+            <h:outputScript library="Jss" name="SoloNumerosss.js"></h:outputScript>
 
             <c:choose>
                 <c:when test="${usuario == null and usuarioAdmin==null  }">
@@ -43,9 +47,10 @@
                     </h:panelGroup>
                     <h:form>
                         <h:panelGrid columns="2">
-                            
+
                             <h:outputLabel value="#{bundle.CreateCodigoLabel_descCodigo}" for="descCodigo" />
-                            <h:inputText id="descCodigo" value="#{codigoController.selected.descCodigo}" title="#{bundle.CreateCodigoTitle_descCodigo}" required="true" requiredMessage="#{bundle.CreateCodigoRequiredMessage_descCodigo}"/>
+                            <h:inputText id="descCodigo" value="#{codigoController.selected.descCodigo}" title="#{bundle.CreateCodigoTitle_descCodigo}" required="true" requiredMessage="#{bundle.CreateCodigoRequiredMessage_descCodigo}"
+                                         onblur="limpia()"  onkeypress="return soloLetras(event)"/>
                             <h:outputLabel value="#{bundle.CreateCodigoLabel_estadoCo}" for="estadoCo" />
                             <h:selectOneMenu id="estadoCo" value="#{codigoController.selected.estadoCo}" title="#{bundle.CreateCodigoTitle_estadoCo}" required="true" requiredMessage="#{bundle.CreateCodigoRequiredMessage_estadoCo}">
                                 <f:selectItems value="#{estadoCodigoController.itemsAvailableSelectOne}"/>

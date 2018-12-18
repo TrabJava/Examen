@@ -11,62 +11,66 @@
             <h:outputText value="#{bundle.EditCodigoTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            
-            
-            <c:choose>
-            <c:when test="${usuario == null and usuarioAdmin==null  }">
-                <h1> Tienes que iniciar sesión como Administrador Primero</h1>
-                <h:link outcome="/loginAdmin.xhtml" value="Login" />
-            </c:when>
-            <c:when test="${usuario!=null and estado==1 and usuarioAdmin==null }">
-                <h1>Credenciales Incorrectas</h1>
-                <h:link outcome="/login.xhtml" value="Login" />
-            </c:when>
-            <c:when test="${estado!=1 and usuario!=null and usuarioAdmin==null and estadoAdmin!=1 }">
-                <h1> Tu cuenta no esta activada y/o no son las credenciales correctas :c</h1>
-                <h:link outcome="/login.xhtml" value="Login" />
-            </c:when>
-            <c:when test="${estadoAdmin!=1}">
-                <h1> Tu cuenta no esta activada :c</h1>
-                <h:link outcome="/loginAdmin.xhtml" value="Login Admin" />
-            </c:when>
-            <c:when test="${usuarioAdmin==null}">
-                <h1> Tienes que iniciar sesión como Administrador Primero</h1>
-                <h:link outcome="/loginAdmin.xhtml" value="Login Admin" />
-            </c:when>
-            <c:when test="${usuarioAdmin!=null and estadoAdmin==1}">
-                <ui:include src="../Menú_Admin.xhtml" />
-                <br></br>
-                <br></br>
-                <br></br>
-                 <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
-            <h:form>
-                <h:panelGrid columns="2">
-                   
-                    <h:outputLabel value="#{bundle.EditCodigoLabel_descCodigo}" for="descCodigo" />
-                    <h:inputText id="descCodigo" value="#{codigoController.selected.descCodigo}" title="#{bundle.EditCodigoTitle_descCodigo}" required="true" requiredMessage="#{bundle.EditCodigoRequiredMessage_descCodigo}"/>
-                    <h:outputLabel value="#{bundle.EditCodigoLabel_estadoCo}" for="estadoCo" />
-                    <h:selectOneMenu id="estadoCo" value="#{codigoController.selected.estadoCo}" title="#{bundle.EditCodigoTitle_estadoCo}" required="true" requiredMessage="#{bundle.EditCodigoRequiredMessage_estadoCo}">
-                        <f:selectItems value="#{estadoCodigoController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
-                </h:panelGrid>
-                <h:commandLink action="#{codigoController.update}" value="#{bundle.EditCodigoSaveLink}"/>
-                <br />
-                <br />
-                <h:link outcome="View" value="#{bundle.EditCodigoViewLink}"/>
-                <br />
-                <h:commandLink action="#{codigoController.prepareList}" value="#{bundle.EditCodigoShowAllLink}" immediate="true"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.EditCodigoIndexLink}" />
-            </h:form>
-            </c:when>
+            <h:outputScript library="Jss" name="SoloNumeroesYPuntos.js"></h:outputScript>
+            <h:outputScript library="Jss" name="Solo_LetrasJS.js"></h:outputScript>
+            <h:outputScript library="Jss" name="TodoMenosEspacios.js"></h:outputScript>
+            <h:outputScript library="Jss" name="SoloNumerosss.js"></h:outputScript>
 
-        </c:choose>
-            
-           
+            <c:choose>
+                <c:when test="${usuario == null and usuarioAdmin==null  }">
+                    <h1> Tienes que iniciar sesión como Administrador Primero</h1>
+                    <h:link outcome="/loginAdmin.xhtml" value="Login" />
+                </c:when>
+                <c:when test="${usuario!=null and estado==1 and usuarioAdmin==null }">
+                    <h1>Credenciales Incorrectas</h1>
+                    <h:link outcome="/login.xhtml" value="Login" />
+                </c:when>
+                <c:when test="${estado!=1 and usuario!=null and usuarioAdmin==null and estadoAdmin!=1 }">
+                    <h1> Tu cuenta no esta activada y/o no son las credenciales correctas :c</h1>
+                    <h:link outcome="/login.xhtml" value="Login" />
+                </c:when>
+                <c:when test="${estadoAdmin!=1}">
+                    <h1> Tu cuenta no esta activada :c</h1>
+                    <h:link outcome="/loginAdmin.xhtml" value="Login Admin" />
+                </c:when>
+                <c:when test="${usuarioAdmin==null}">
+                    <h1> Tienes que iniciar sesión como Administrador Primero</h1>
+                    <h:link outcome="/loginAdmin.xhtml" value="Login Admin" />
+                </c:when>
+                <c:when test="${usuarioAdmin!=null and estadoAdmin==1}">
+                    <ui:include src="../Menú_Admin.xhtml" />
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <h:panelGroup id="messagePanel" layout="block">
+                        <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                    </h:panelGroup>
+                    <h:form>
+                        <h:panelGrid columns="2">
+
+                            <h:outputLabel value="#{bundle.EditCodigoLabel_descCodigo}" for="descCodigo" />
+                            <h:inputText id="descCodigo" value="#{codigoController.selected.descCodigo}" title="#{bundle.EditCodigoTitle_descCodigo}" required="true" requiredMessage="#{bundle.EditCodigoRequiredMessage_descCodigo}"
+                                         onblur="limpia()"  onkeypress="return todoMenosEspacios(event)"/>
+                            <h:outputLabel value="#{bundle.EditCodigoLabel_estadoCo}" for="estadoCo" />
+                            <h:selectOneMenu id="estadoCo" value="#{codigoController.selected.estadoCo}" title="#{bundle.EditCodigoTitle_estadoCo}" required="true" requiredMessage="#{bundle.EditCodigoRequiredMessage_estadoCo}">
+                                <f:selectItems value="#{estadoCodigoController.itemsAvailableSelectOne}"/>
+                            </h:selectOneMenu>
+                        </h:panelGrid>
+                        <h:commandLink action="#{codigoController.update}" value="#{bundle.EditCodigoSaveLink}"/>
+                        <br />
+                        <br />
+                        <h:link outcome="View" value="#{bundle.EditCodigoViewLink}"/>
+                        <br />
+                        <h:commandLink action="#{codigoController.prepareList}" value="#{bundle.EditCodigoShowAllLink}" immediate="true"/>
+                        <br />
+                        <br />
+                        <h:link outcome="/index" value="#{bundle.EditCodigoIndexLink}" />
+                    </h:form>
+                </c:when>
+
+            </c:choose>
+
+
         </ui:define>
     </ui:composition>
 
