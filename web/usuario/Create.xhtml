@@ -20,6 +20,21 @@
             <h:outputScript library="Jss" name="Letras_numerooosss.js"></h:outputScript>
             <c:choose>
                 <c:when test="${usuario ==null || usuarioAdmin==null   }">
+                     <h:form>
+                    <div id="container">
+                        <div id="header"></div>
+                        <p:menubar id="top-nav">                 
+                            <p:menuitem value="Juegos"  outcome="/VistaPrincipal.xhtml"/>
+                            <p:menuitem value="Configurar"  url="#"/>
+
+                            <f:facet name="options">
+
+                            </f:facet>
+
+                        </p:menubar>
+
+                    </div>
+                </h:form>
                     <h:panelGroup id="messagePanel" layout="block">
                         <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
                     </h:panelGroup>
@@ -55,7 +70,7 @@
                         <h:commandLink action="#{usuarioController.prepareList}" value="#{bundle.CreateUsuarioShowAllLink}" immediate="true"/>
                         <br />
                         <br />
-                        <h:link outcome="/index" value="#{bundle.CreateUsuarioIndexLink}"/>
+                        <h:link outcome="/VistaPrincipal" value="#{bundle.CreateUsuarioIndexLink}"/>
                     </h:form>
 
                 </c:when>
