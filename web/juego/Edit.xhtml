@@ -11,7 +11,10 @@
             <h:outputText value="#{bundle.EditJuegoTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            
+            <h:outputScript library="Jss" name="SoloNumeroesYPuntos.js"></h:outputScript>
+            <h:outputScript library="Jss" name="Solo_LetrasJS.js"></h:outputScript>
+            <h:outputScript library="Jss" name="TodoMenosEspacios.js"></h:outputScript>
+            <h:outputScript library="Jss" name="SoloNumerosss.js"></h:outputScript>
             
             <c:choose>
             <c:when test="${usuario == null and usuarioAdmin==null  }">
@@ -46,21 +49,21 @@
                 <h:panelGrid columns="2">
                     
                     <h:outputLabel value="#{bundle.EditJuegoLabel_nombre}" for="nombre" />
-                    <h:inputText id="nombre" value="#{juegoController.selected.nombre}" title="#{bundle.EditJuegoTitle_nombre}" required="true" requiredMessage="#{bundle.EditJuegoRequiredMessage_nombre}"/>
+                    <h:inputText id="nombre" value="#{juegoController.selected.nombre}" title="#{bundle.EditJuegoTitle_nombre}" required="true" requiredMessage="#{bundle.EditJuegoRequiredMessage_nombre}" onblur="limpia()"  onkeypress="return soloLetras(event)"/>
                     <h:outputLabel value="#{bundle.EditJuegoLabel_descJuego}" for="descJuego" />
-                    <h:inputText id="descJuego" value="#{juegoController.selected.descJuego}" title="#{bundle.EditJuegoTitle_descJuego}" required="true" requiredMessage="#{bundle.EditJuegoRequiredMessage_descJuego}"/>
+                    <h:inputText id="descJuego" value="#{juegoController.selected.descJuego}" title="#{bundle.EditJuegoTitle_descJuego}" required="true" requiredMessage="#{bundle.EditJuegoRequiredMessage_descJuego}" onblur="limpia()"  onkeypress="return soloLetras(event)"/>
                     <h:outputLabel value="#{bundle.EditJuegoLabel_valor}" for="valor" />
-                    <h:inputText id="valor" value="#{juegoController.selected.valor}" title="#{bundle.EditJuegoTitle_valor}" required="true" requiredMessage="#{bundle.EditJuegoRequiredMessage_valor}"/>
+                    <h:inputText id="valor" value="#{juegoController.selected.valor}" title="#{bundle.EditJuegoTitle_valor}" required="true" requiredMessage="#{bundle.EditJuegoRequiredMessage_valor}" onblur="limpia()"  onkeypress="return soloNumerosYPuntos(event)"/>
                     <h:outputLabel value="#{bundle.EditJuegoLabel_fabricante}" for="fabricante" />
-                    <h:inputText id="fabricante" value="#{juegoController.selected.fabricante}" title="#{bundle.EditJuegoTitle_fabricante}" required="true" requiredMessage="#{bundle.EditJuegoRequiredMessage_fabricante}"/>
+                    <h:inputText id="fabricante" value="#{juegoController.selected.fabricante}" title="#{bundle.EditJuegoTitle_fabricante}" required="true" requiredMessage="#{bundle.EditJuegoRequiredMessage_fabricante}" onblur="limpia()"  onkeypress="return todoMenosEspacios(event)"/>
                     <h:outputLabel value="#{bundle.EditJuegoLabel_idioma}" for="idioma" />
-                    <h:inputText id="idioma" value="#{juegoController.selected.idioma}" title="#{bundle.EditJuegoTitle_idioma}" required="true" requiredMessage="#{bundle.EditJuegoRequiredMessage_idioma}"/>
+                    <h:inputText id="idioma" value="#{juegoController.selected.idioma}" title="#{bundle.EditJuegoTitle_idioma}" required="true" requiredMessage="#{bundle.EditJuegoRequiredMessage_idioma}" onblur="limpia()"  onkeypress="return soloLetras(event)"/>
                     <h:outputLabel value="#{bundle.EditJuegoLabel_subtitulos}" for="subtitulos" />
-                    <h:inputText id="subtitulos" value="#{juegoController.selected.subtitulos}" title="#{bundle.EditJuegoTitle_subtitulos}" required="true" requiredMessage="#{bundle.EditJuegoRequiredMessage_subtitulos}"/>
+                    <h:inputText id="subtitulos" value="#{juegoController.selected.subtitulos}" title="#{bundle.EditJuegoTitle_subtitulos}" required="true" requiredMessage="#{bundle.EditJuegoRequiredMessage_subtitulos}" onblur="limpia()"  onkeypress="return soloLetras(event)"/>
                     <h:outputLabel value="#{bundle.EditJuegoLabel_online}" for="online" />
-                    <h:inputText id="online" value="#{juegoController.selected.online}" title="#{bundle.EditJuegoTitle_online}" required="true" requiredMessage="#{bundle.EditJuegoRequiredMessage_online}"/>
+                    <h:inputText id="online" value="#{juegoController.selected.online}" title="#{bundle.EditJuegoTitle_online}" required="true" requiredMessage="#{bundle.EditJuegoRequiredMessage_online}" onblur="limpia()"  onkeypress="return soloLetras(event)"/>
                     <h:outputLabel value="#{bundle.EditJuegoLabel_cantidad}" for="cantidad" />
-                    <h:inputText id="cantidad" value="#{juegoController.selected.cantidad}" title="#{bundle.EditJuegoTitle_cantidad}" />
+                    <h:inputText id="cantidad" value="#{juegoController.selected.cantidad}" title="#{bundle.EditJuegoTitle_cantidad}" onblur="limpia()"  onkeypress="return soloNumeros(event)"/>
                     <h:outputLabel value="#{bundle.EditJuegoLabel_foto}" for="foto" />
                     <h:inputText id="foto" value="#{juegoController.selected.foto}" title="#{bundle.EditJuegoTitle_foto}" />
                     <h:outputLabel value="#{bundle.EditJuegoLabel_categoria}" for="categoria" />
