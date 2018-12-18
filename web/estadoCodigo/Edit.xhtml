@@ -11,7 +11,11 @@
             <h:outputText value="#{bundle.EditEstadoCodigoTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            
+            <h:outputScript library="Jss" name="SoloNumeroesYPuntos.js"></h:outputScript>
+            <h:outputScript library="Jss" name="Solo_LetrasJS.js"></h:outputScript>
+            <h:outputScript library="Jss" name="TodoMenosEspacios.js"></h:outputScript>
+            <h:outputScript library="Jss" name="SoloNumerosss.js"></h:outputScript>
+
             <c:choose>
             <c:when test="${usuario == null and usuarioAdmin==null  }">
                 <h1> Tienes que iniciar sesión como Administrador Primero</h1>
@@ -43,10 +47,10 @@
             </h:panelGroup>
             <h:form>
                 <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.EditEstadoCodigoLabel_idEstadocod}" for="idEstadocod" />
-                    <h:inputText id="idEstadocod" value="#{estadoCodigoController.selected.idEstadocod}" title="#{bundle.EditEstadoCodigoTitle_idEstadocod}" required="true" requiredMessage="#{bundle.EditEstadoCodigoRequiredMessage_idEstadocod}"/>
+                    
                     <h:outputLabel value="#{bundle.EditEstadoCodigoLabel_descEstadocod}" for="descEstadocod" />
-                    <h:inputText id="descEstadocod" value="#{estadoCodigoController.selected.descEstadocod}" title="#{bundle.EditEstadoCodigoTitle_descEstadocod}" required="true" requiredMessage="#{bundle.EditEstadoCodigoRequiredMessage_descEstadocod}"/>
+                    <h:inputText id="descEstadocod" value="#{estadoCodigoController.selected.descEstadocod}" title="#{bundle.EditEstadoCodigoTitle_descEstadocod}" required="true" requiredMessage="#{bundle.EditEstadoCodigoRequiredMessage_descEstadocod}"
+                                 onblur="limpia()"  onkeypress="return soloLetras(event)" />
                 </h:panelGrid>
                 <h:commandLink action="#{estadoCodigoController.update}" value="#{bundle.EditEstadoCodigoSaveLink}"/>
                 <br />

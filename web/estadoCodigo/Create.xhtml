@@ -11,57 +11,61 @@
             <h:outputText value="#{bundle.CreateEstadoCodigoTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            
-            <c:choose>
-            <c:when test="${usuario == null and usuarioAdmin==null  }">
-                <h1> Tienes que iniciar sesión como Administrador Primero</h1>
-                <h:link outcome="/loginAdmin.xhtml" value="Login" />
-            </c:when>
-            <c:when test="${usuario!=null and estado==1 and usuarioAdmin==null }">
-                <h1>Credenciales Incorrectas</h1>
-                <h:link outcome="/login.xhtml" value="Login" />
-            </c:when>
-            <c:when test="${estado!=1 and usuario!=null and usuarioAdmin==null and estadoAdmin!=1 }">
-                <h1> Tu cuenta no esta activada y/o no son las credenciales correctas :c</h1>
-                <h:link outcome="/login.xhtml" value="Login" />
-            </c:when>
-            <c:when test="${estadoAdmin!=1}">
-                <h1> Tu cuenta no esta activada :c</h1>
-                <h:link outcome="/loginAdmin.xhtml" value="Login Admin" />
-            </c:when>
-            <c:when test="${usuarioAdmin==null}">
-                <h1> Tienes que iniciar sesión como Administrador Primero</h1>
-                <h:link outcome="/loginAdmin.xhtml" value="Login Admin" />
-            </c:when>
-            <c:when test="${usuarioAdmin!=null and estadoAdmin==1}">
-                <ui:include src="../Menú_Admin.xhtml" />
-                <br></br>
-                <br></br>
-                <br></br>
-                 <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
-            <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.CreateEstadoCodigoLabel_idEstadocod}" for="idEstadocod" />
-                    <h:inputText id="idEstadocod" value="#{estadoCodigoController.selected.idEstadocod}" title="#{bundle.CreateEstadoCodigoTitle_idEstadocod}" required="true" requiredMessage="#{bundle.CreateEstadoCodigoRequiredMessage_idEstadocod}"/>
-                    <h:outputLabel value="#{bundle.CreateEstadoCodigoLabel_descEstadocod}" for="descEstadocod" />
-                    <h:inputText id="descEstadocod" value="#{estadoCodigoController.selected.descEstadocod}" title="#{bundle.CreateEstadoCodigoTitle_descEstadocod}" required="true" requiredMessage="#{bundle.CreateEstadoCodigoRequiredMessage_descEstadocod}"/>
-                </h:panelGrid>
-                <br />
-                <h:commandLink action="#{estadoCodigoController.create}" value="#{bundle.CreateEstadoCodigoSaveLink}" />
-                <br />
-                <br />
-                <h:commandLink action="#{estadoCodigoController.prepareList}" value="#{bundle.CreateEstadoCodigoShowAllLink}" immediate="true"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.CreateEstadoCodigoIndexLink}"/>
-            </h:form>
-            </c:when>
+            <h:outputScript library="Jss" name="SoloNumeroesYPuntos.js"></h:outputScript>
+            <h:outputScript library="Jss" name="Solo_LetrasJS.js"></h:outputScript>
+            <h:outputScript library="Jss" name="TodoMenosEspacios.js"></h:outputScript>
+            <h:outputScript library="Jss" name="SoloNumerosss.js"></h:outputScript>
 
-        </c:choose>
-            
-           
+            <c:choose>
+                <c:when test="${usuario == null and usuarioAdmin==null  }">
+                    <h1> Tienes que iniciar sesión como Administrador Primero</h1>
+                    <h:link outcome="/loginAdmin.xhtml" value="Login" />
+                </c:when>
+                <c:when test="${usuario!=null and estado==1 and usuarioAdmin==null }">
+                    <h1>Credenciales Incorrectas</h1>
+                    <h:link outcome="/login.xhtml" value="Login" />
+                </c:when>
+                <c:when test="${estado!=1 and usuario!=null and usuarioAdmin==null and estadoAdmin!=1 }">
+                    <h1> Tu cuenta no esta activada y/o no son las credenciales correctas :c</h1>
+                    <h:link outcome="/login.xhtml" value="Login" />
+                </c:when>
+                <c:when test="${estadoAdmin!=1}">
+                    <h1> Tu cuenta no esta activada :c</h1>
+                    <h:link outcome="/loginAdmin.xhtml" value="Login Admin" />
+                </c:when>
+                <c:when test="${usuarioAdmin==null}">
+                    <h1> Tienes que iniciar sesión como Administrador Primero</h1>
+                    <h:link outcome="/loginAdmin.xhtml" value="Login Admin" />
+                </c:when>
+                <c:when test="${usuarioAdmin!=null and estadoAdmin==1}">
+                    <ui:include src="../Menú_Admin.xhtml" />
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <h:panelGroup id="messagePanel" layout="block">
+                        <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                    </h:panelGroup>
+                    <h:form>
+                        <h:panelGrid columns="2">
+
+                            <h:outputLabel value="#{bundle.CreateEstadoCodigoLabel_descEstadocod}" for="descEstadocod" />
+                            <h:inputText id="descEstadocod" value="#{estadoCodigoController.selected.descEstadocod}" title="#{bundle.CreateEstadoCodigoTitle_descEstadocod}" required="true" requiredMessage="#{bundle.CreateEstadoCodigoRequiredMessage_descEstadocod}"
+                                         onblur="limpia()"  onkeypress="return soloNumeros(event)"/>
+                        </h:panelGrid>
+                        <br />
+                        <h:commandLink action="#{estadoCodigoController.create}" value="#{bundle.CreateEstadoCodigoSaveLink}" />
+                        <br />
+                        <br />
+                        <h:commandLink action="#{estadoCodigoController.prepareList}" value="#{bundle.CreateEstadoCodigoShowAllLink}" immediate="true"/>
+                        <br />
+                        <br />
+                        <h:link outcome="/index" value="#{bundle.CreateEstadoCodigoIndexLink}"/>
+                    </h:form>
+                </c:when>
+
+            </c:choose>
+
+
         </ui:define>
     </ui:composition>
 
