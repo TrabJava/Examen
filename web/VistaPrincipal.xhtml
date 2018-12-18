@@ -15,7 +15,7 @@
     <h:body> 
 
         <c:choose>
-            <c:when test="${usuario != null and estado==1   }">
+            <c:when test="${usuario != null and estado==1 and usuarioAdmin==null   }">
                 <h:form>
                     <div id="container">
                         <div id="header"></div>
@@ -371,7 +371,7 @@
             </c:when>
 
 
-            <c:when test="${usuario!=null and estado!=1 and usuarioAdmin==null }">
+            <c:when test="${usuario!=null and estado!=1 || usuarioAdmin!=null and estadoAdmin!=1 }">
                 <h1>usuario desactivado </h1>
                 <h:link outcome="/login.xhtml" value="Login" />
             </c:when>
@@ -400,6 +400,179 @@
                     </p:menubar>
 
                 </div>
+                </h:form>
+                <br></br>
+
+
+
+                <div id="container">
+
+                    <style type="text/css">
+                        .value {
+                            font-weight: bold;
+                        }
+                    </style>
+
+
+                    <h:form>
+                        <p:outputLabel value="Busqueda"></p:outputLabel>
+                        <h:panelGrid columns="4">
+
+
+                            <p:outputLabel for="txtBuscar" value="Buscar"/>
+                            <p:inputText id="txtBuscar" required="true" value="#{juegoController.selected.nombre}"/>
+
+                            <h:column/>
+                            <p:commandButton icon="ui-icon-search" value="Buscar" update="grid" actionListener="#{juegoController.buscarJueguito()}"/>
+                        </h:panelGrid>
+
+
+
+                        <p:dataGrid id="grid" value="${juegoController.listaJuegos}" var="jueg">
+                            <h:outputText value="#{jueg.nombre}"/>
+                            <br></br>
+                            <p:graphicImage style="width: 200px; height: 250px;"  value="images/#{jueg.foto}"/>
+                            <br></br>
+                            <h:outputText value="$#{jueg.valor}" />
+                            <br></br>
+                            <p:commandLink value="Detalles" oncomplete="PF('dlg2').show();" update="dialogoBuscar"></p:commandLink>
+                            <br></br>
+                            <h:commandLink action="#" value="Comprar"/>
+
+                            <p:dialog id="dialogoBuscar" header="#{jueg.nombre}" widgetVar="dlg2" modal="true" height="250">
+                                <h:outputText value="#{bundle.ListJuegoTitle_nombre}"/>
+                                <h:outputText value="#{jueg.nombre}"/>
+                                <br></br>
+                                <h:outputText value="#{bundle.ListJuegoTitle_descJuego}"/>
+                                <h:outputText value="#{jueg.descJuego}"/>
+                                <br></br>
+                                <h:outputText value="#{bundle.ListJuegoTitle_valor}"/>
+                                <h:outputText value="$#{jueg.valor}" />
+                                <br></br>
+                                <h:outputText value="#{bundle.ListJuegoTitle_fabricante}"/>
+                                <h:outputText value="#{jueg.fabricante}"/>
+                                <br></br>
+                                <h:outputText value="#{bundle.ListJuegoTitle_idioma}"/>
+                                <h:outputText value="#{jueg.idioma}"/>
+                                <br></br>
+                                <h:outputText value="#{bundle.ListJuegoTitle_subtitulos}"/>
+                                <h:outputText value="#{jueg.subtitulos}"/>
+                                <br></br>
+                                <h:outputText value="#{bundle.ListJuegoTitle_online}"/>
+                                <h:outputText value="#{jueg.online}"/>
+                                <br></br>
+                                <h:outputText value="#{bundle.ListJuegoTitle_cantidad}"/>
+                                <h:outputText value="#{jueg.cantidad}"/>
+                                <br></br>
+                                <h:outputText value="#{bundle.ListJuegoTitle_categoria}"/>
+                                <h:outputText value="#{jueg.categoria.descCategoria}"/>
+                                <br></br>
+                                <h:outputText value="#{bundle.ListJuegoTitle_estadoJu}"/>
+                                <h:outputText value="#{jueg.estadoJu.descEstadoju}"/>
+                                <br></br>
+                                <h:outputText value="#{bundle.ListJuegoTitle_tipo}"/>
+                                <h:outputText value="#{jueg.tipo.dscTipo}"/>
+
+
+                            </p:dialog> 
+                        </p:dataGrid>
+
+                    </h:form>
+
+
+
+
+
+
+
+
+                    <h:form id="form">
+
+
+                        <p:dataGrid var="item" value="#{juegoController.items}" columns="3"
+                                    rows="12" paginator="true" id="grid"
+                                    paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                    rowsPerPageTemplate="6,12,16">
+
+
+                            <h:panelGrid columns="1" cellpadding="5" border="1" id="buscarJuegos">
+
+                                <h:outputText value="#{item.nombre}"/>
+                                <p:graphicImage style="width: 200px; height: 250px;"  value="images/#{item.foto}"/>
+                                <h:outputText value="$#{item.valor}" />
+                                <p:commandLink value="Detalles" oncomplete="PF('dlg2').show();" update="dialogo"></p:commandLink>
+                                <h:commandLink action="#" value="Comprar"/>
+                            </h:panelGrid>
+
+
+                            <p:dialog id="dialogo" header="#{item.nombre}" widgetVar="dlg2" modal="true" height="250">
+                                <h:outputText value="#{bundle.ListJuegoTitle_nombre}"/>
+                                <h:outputText value="#{item.nombre}"/>
+                                <br></br>
+                                <h:outputText value="#{bundle.ListJuegoTitle_descJuego}"/>
+                                <h:outputText value="#{item.descJuego}"/>
+                                <br></br>
+                                <h:outputText value="#{bundle.ListJuegoTitle_valor}"/>
+                                <h:outputText value="$#{item.valor}" />
+                                <br></br>
+                                <h:outputText value="#{bundle.ListJuegoTitle_fabricante}"/>
+                                <h:outputText value="#{item.fabricante}"/>
+                                <br></br>
+                                <h:outputText value="#{bundle.ListJuegoTitle_idioma}"/>
+                                <h:outputText value="#{item.idioma}"/>
+                                <br></br>
+                                <h:outputText value="#{bundle.ListJuegoTitle_subtitulos}"/>
+                                <h:outputText value="#{item.subtitulos}"/>
+                                <br></br>
+                                <h:outputText value="#{bundle.ListJuegoTitle_online}"/>
+                                <h:outputText value="#{item.online}"/>
+                                <br></br>
+                                <h:outputText value="#{bundle.ListJuegoTitle_cantidad}"/>
+                                <h:outputText value="#{item.cantidad}"/>
+                                <br></br>
+                                <h:outputText value="#{bundle.ListJuegoTitle_categoria}"/>
+                                <h:outputText value="#{item.categoria.descCategoria}"/>
+                                <br></br>
+                                <h:outputText value="#{bundle.ListJuegoTitle_estadoJu}"/>
+                                <h:outputText value="#{item.estadoJu.descEstadoju}"/>
+                                <br></br>
+                                <h:outputText value="#{bundle.ListJuegoTitle_tipo}"/>
+                                <h:outputText value="#{item.tipo.dscTipo}"/>
+
+
+                            </p:dialog> 
+
+
+
+
+
+                        </p:dataGrid>
+
+
+                    </h:form>
+
+                    <div id="footer">
+
+                        Copyright &copy; 2018 Cetecompra. All rights reserved. real hasta la muerte baby 
+                    </div>
+                </div>
+            </c:when>
+             <c:when test="${usuarioAdmin!=null and estadoAdmin==1}">
+                <ui:include src="Menú_Admin.xhtml" />
+                <h:form>
+                    <div id="container">
+                        <div id="header"></div>
+                        <p:menubar id="top-nav">                 
+                            <p:menuitem value="Juegos"  url="#"/>
+                            <p:menuitem value="Configurar"  url="#"/>
+
+                            <f:facet name="options">
+
+                            </f:facet>
+
+                        </p:menubar>
+
+                    </div>
                 </h:form>
                 <br></br>
 
