@@ -11,7 +11,10 @@
             <h:outputText value="#{bundle.EditEstadoUsuarioTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
-
+            <h:outputScript library="Jss" name="SoloNumeroesYPuntos.js"></h:outputScript>
+            <h:outputScript library="Jss" name="Solo_LetrasJS.js"></h:outputScript>
+            <h:outputScript library="Jss" name="TodoMenosEspacios.js"></h:outputScript>
+            <h:outputScript library="Jss" name="SoloNumerosss.js"></h:outputScript>
             <c:choose>
                 <c:when test="${usuario == null and usuarioAdmin==null  }">
                     <h1> Tienes que iniciar sesión como Administrador Primero</h1>
@@ -43,9 +46,10 @@
                     </h:panelGroup>
                     <h:form>
                         <h:panelGrid columns="2">
-                            
+
                             <h:outputLabel value="#{bundle.EditEstadoUsuarioLabel_descEstadous}" for="descEstadous" />
-                            <h:inputText id="descEstadous" value="#{estadoUsuarioController.selected.descEstadous}" title="#{bundle.EditEstadoUsuarioTitle_descEstadous}" required="true" requiredMessage="#{bundle.EditEstadoUsuarioRequiredMessage_descEstadous}"/>
+                            <h:inputText id="descEstadous" value="#{estadoUsuarioController.selected.descEstadous}" title="#{bundle.EditEstadoUsuarioTitle_descEstadous}" required="true" requiredMessage="#{bundle.EditEstadoUsuarioRequiredMessage_descEstadous}"
+                                         onblur="limpia()"  onkeypress="return soloLetras(event)"/>
                         </h:panelGrid>
                         <h:commandLink action="#{estadoUsuarioController.update}" value="#{bundle.EditEstadoUsuarioSaveLink}"/>
                         <br />
