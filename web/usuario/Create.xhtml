@@ -6,6 +6,12 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
       xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <h:outputStylesheet library="css" name="MenuFormato.css"/>
+        <meta http-equiv="Content-type" content="text/html;charset=UTF-8" /> 
+        <title>Website Name Here</title>
+        <link rel="stylesheet" type="text/css" href="resources/css/MenuFormato.css" />
+    </h:head>
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
@@ -20,26 +26,22 @@
             <h:outputScript library="Jss" name="Letras_numerooosss.js"></h:outputScript>
             <c:choose>
                 <c:when test="${usuario ==null || usuarioAdmin==null   }">
-                     <h:form>
-                    <div id="container">
-                        <div id="header"></div>
-                        <p:menubar id="top-nav">                 
-                            <p:menuitem value="Juegos"  outcome="/VistaPrincipal.xhtml"/>
-                            <p:menuitem value="Configurar"  url="#"/>
+                    <h:form>
+                        <div id="container">
+                            <div id="header"></div>
+                            <p:menubar id="top-nav" style="width: 550px; margin-left: 600px ">                 
+                                <p:menuitem value="Juegos"  outcome="/VistaPrincipal.xhtml"/>
+                                <p:menuitem value="Configurar"  url="#"/>
 
-                            <f:facet name="options">
+                            </p:menubar>
 
-                            </f:facet>
-
-                        </p:menubar>
-
-                    </div>
-                </h:form>
+                        </div>
+                    </h:form>
                     <h:panelGroup id="messagePanel" layout="block">
                         <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
                     </h:panelGroup>
                     <h:form>
-                        <h:panelGrid columns="2">
+                        <h:panelGrid columns="2" style="width: 550px; margin-left: 600px; text-align: center ">
 
                             <h:outputLabel value="#{bundle.CreateUsuarioLabel_nombre}" for="nombre" />
                             <h:inputText id="nombre" value="#{usuarioController.selected.nombre}" title="#{bundle.CreateUsuarioTitle_nombre}" required="true" requiredMessage="#{bundle.CreateUsuarioRequiredMessage_nombre}" onblur="limpia()"  onkeypress="return soloLetras(event)"/>
@@ -47,7 +49,7 @@
                             <h:inputText id="user" value="#{usuarioController.selected.user}" title="#{bundle.CreateUsuarioTitle_user}" required="true" requiredMessage="#{bundle.CreateUsuarioRequiredMessage_user}" onblur="limpia()"  onkeypress="return Letras_numerossss(event)"/>
                             <h:outputLabel value="#{bundle.CreateUsuarioLabel_pass}" for="pass" />
                             <p:password id="pass" value="#{usuarioController.selected.pass}" title="#{bundle.CreateUsuarioTitle_pass}" required="true" requiredMessage="#{bundle.CreateUsuarioRequiredMessage_pass}" onblur="limpia()"  onkeypress="return todoMenosEspacios(event)" weakLabel="Débil"
-                                strongLabel="Fuerte" goodLabel="Bueno" feedback="true"/>
+                                        strongLabel="Fuerte" goodLabel="Bueno" feedback="true"/>
                             <h:outputLabel value="#{bundle.CreateUsuarioLabel_foto}" for="foto" />
                             <h:inputText id="foto" value="#{usuarioController.selected.foto}" title="#{bundle.CreateUsuarioTitle_foto}" />
                             <h:outputLabel value="#{bundle.CreateUsuarioLabel_estadoUser}" for="estadoUser" />
@@ -64,13 +66,13 @@
                             </h:selectOneMenu>
                         </h:panelGrid>
                         <br />
-                        <h:commandLink action="#{usuarioController.create}" value="#{bundle.CreateUsuarioSaveLink}" />
+                        <h:commandLink action="#{usuarioController.create}" value="#{bundle.CreateUsuarioSaveLink}"  style="width: 550px; margin-left: 600px; text-align: center " />
                         <br />
                         <br />
-                        <h:commandLink action="#{usuarioController.prepareList}" value="#{bundle.CreateUsuarioShowAllLink}" immediate="true"/>
+                        <h:commandLink action="#{usuarioController.prepareList}" value="#{bundle.CreateUsuarioShowAllLink}" immediate="true"  style="width: 550px; margin-left: 600px; text-align: center "/>
                         <br />
                         <br />
-                        <h:link outcome="/VistaPrincipal" value="#{bundle.CreateUsuarioIndexLink}"/>
+                        <h:link outcome="/VistaPrincipal" value="#{bundle.CreateUsuarioIndexLink}"  style="width: 550px; margin-left: 600px; text-align: center "/>
                     </h:form>
 
                 </c:when>
@@ -107,7 +109,7 @@
                             <h:inputText id="user" value="#{usuarioController.selected.user}" title="#{bundle.CreateUsuarioTitle_user}" required="true" requiredMessage="#{bundle.CreateUsuarioRequiredMessage_user}" onblur="limpia()"  onkeypress="return Letras_numerossss(event)"/>
                             <h:outputLabel value="#{bundle.CreateUsuarioLabel_pass}" for="pass" />
                             <p:password id="pass" value="#{usuarioController.selected.pass}" title="#{bundle.CreateUsuarioTitle_pass}" required="true" requiredMessage="#{bundle.CreateUsuarioRequiredMessage_pass}" onblur="limpia()"  onkeypress="return todoMenosEspacios(event)" weakLabel="Débil"
-                                strongLabel="Fuerte" goodLabel="Bueno" feedback="true" />
+                                        strongLabel="Fuerte" goodLabel="Bueno" feedback="true" />
                             <h:outputLabel value="#{bundle.CreateUsuarioLabel_foto}" for="foto" />
                             <h:inputText id="foto" value="#{usuarioController.selected.foto}" title="#{bundle.CreateUsuarioTitle_foto}" />
                             <h:outputLabel value="#{bundle.CreateUsuarioLabel_estadoUser}" for="estadoUser" />
