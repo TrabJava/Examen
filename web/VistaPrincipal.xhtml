@@ -13,12 +13,9 @@
     </h:head>
 
     <h:body> 
-        ${usuario}
-        ${estado}
-
 
         <c:choose>
-            <c:when test="${usuario != null and estado==1 and usuarioAdmin!=null and estadoAdmin!=1  }">
+            <c:when test="${usuario != null and estado==1   }">
                 <h:form>
                     <div id="container">
                         <div id="header"></div>
@@ -191,7 +188,7 @@
                 </div>
             </c:when>
             
-            <c:when test="${usuario == null  and usuarioAdmin!=null and estadoAdmin==1  }">
+            <c:when test="${usuario == null  and usuarioAdmin!=null and estadoAdmin==1 and estado==null  }">
                 <h:form>
                     <div id="container">
                         <div id="header"></div>
@@ -374,7 +371,7 @@
             </c:when>
 
 
-            <c:when test="${usuario!=null and estado!=1 and usuarioAdmin!=null and estadoAdmin!=1}">
+            <c:when test="${usuario!=null and estado!=1 and usuarioAdmin==null }">
                 <h1>usuario desactivado </h1>
                 <h:link outcome="/login.xhtml" value="Login" />
             </c:when>
@@ -560,14 +557,7 @@
                     </div>
                 </div>
             </c:when>
-
-
-
         </c:choose>
-
-
-
-
 
     </h:body>
 </html>
