@@ -11,7 +11,11 @@
             <h:outputText value="#{bundle.EditTipoConsolaTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            
+            <h:outputScript library="Jss" name="SoloNumeroesYPuntos.js"></h:outputScript>
+            <h:outputScript library="Jss" name="Solo_LetrasJS.js"></h:outputScript>
+            <h:outputScript library="Jss" name="TodoMenosEspacios.js"></h:outputScript>
+            <h:outputScript library="Jss" name="SoloNumerosss.js"></h:outputScript>
+            <h:outputScript library="Jss" name="Letras_Numeros_Espacio.js"></h:outputScript>
              <c:choose>
             <c:when test="${usuario == null and usuarioAdmin==null  }">
                 <h1> Tienes que iniciar sesión como Administrador Primero</h1>
@@ -43,10 +47,10 @@
             </h:panelGroup>
             <h:form>
                 <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.EditTipoConsolaLabel_idTipo}" for="idTipo" />
-                    <h:inputText id="idTipo" value="#{tipoConsolaController.selected.idTipo}" title="#{bundle.EditTipoConsolaTitle_idTipo}" required="true" requiredMessage="#{bundle.EditTipoConsolaRequiredMessage_idTipo}"/>
+                   
                     <h:outputLabel value="#{bundle.EditTipoConsolaLabel_dscTipo}" for="dscTipo" />
-                    <h:inputText id="dscTipo" value="#{tipoConsolaController.selected.dscTipo}" title="#{bundle.EditTipoConsolaTitle_dscTipo}" required="true" requiredMessage="#{bundle.EditTipoConsolaRequiredMessage_dscTipo}"/>
+                    <h:inputText id="dscTipo" value="#{tipoConsolaController.selected.dscTipo}" title="#{bundle.EditTipoConsolaTitle_dscTipo}" required="true" requiredMessage="#{bundle.EditTipoConsolaRequiredMessage_dscTipo}" onblur="limpia()"  onkeypress="return soloLetras(event)"
+/>
                 </h:panelGrid>
                 <h:commandLink action="#{tipoConsolaController.update}" value="#{bundle.EditTipoConsolaSaveLink}"/>
                 <br />
