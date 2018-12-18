@@ -1,7 +1,7 @@
-function soloNumerosYPuntos(e) {
+function soloNumeros(e) {
     key = e.keyCode || e.which;
     tecla = String.fromCharCode(key).toLowerCase();
-    letras = "123456789.$";
+    letras = "123456789";
     especiales = "8-37-39-46";
     tecla_especial = false
     for (var i in especiales) {
