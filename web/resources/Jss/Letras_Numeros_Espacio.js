@@ -1,7 +1,7 @@
 function Letras_espacio_numeros(e) {
     key = e.keyCode || e.which;
     tecla = String.fromCharCode(key).toLowerCase();
-    letras = "qwertyuiopasdfghjklñzxcvbnm";
+    letras = "qwertyuiopasdfghjklñzxcvbnm_1234567890 ";
     especiales = "8-37-39-46";
     tecla_especial = false
     for (var i in especiales) {
