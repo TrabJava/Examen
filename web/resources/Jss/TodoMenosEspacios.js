@@ -1,7 +1,7 @@
 function todoMenosEspacios(e) {
     key = e.keyCode || e.which;
     tecla = String.fromCharCode(key).toLowerCase();
-    letras = "123456789qwertyuiopasdfghjklñzxcvbnm;:_-{}´+[]¨*¨!#$%&/()=?¡";
+    letras = "1234567890qwertyuiopasdfghjklñzxcvbnm;:_-{}´+[]¨*¨!#$%&/()=?¡";
     especiales = "8-37-39-46";
     tecla_especial = false
     for (var i in especiales) {
