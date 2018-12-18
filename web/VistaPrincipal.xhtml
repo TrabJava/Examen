@@ -11,7 +11,8 @@
         <link rel="stylesheet" type="text/css" href="resources/css/MenuFormato.css" />
     </h:head>
 
-    <h:body>
+    <h:body> 
+        ${usuario}
         <h:form>
             <div id="container">
                 <div id="header"></div>
@@ -41,12 +42,18 @@
                         <p:menuitem value="Blizzard" icon="ui-icon-circle-plus" url="#"/>
                         <p:menuitem value="Todas las Marcas" icon="ui-icon-circle-plus" url="#"/>
                     </p:submenu>
-
                     <f:facet name="options">
-                        <p:inputText style="width: 110px; height: 15px;" placeholder="Usuario"/>
-                        <p:inputText style="width: 110px; height: 15px;" placeholder="Contraseñia"/>
-                        <p:commandButton style="height: 30px" type="button" value="Log In" icon="pi pi-home" />
+                        <p:inputText placeholder="Usuario" style="width: 100px;"  value="#{usuarioController.selected.user}"/>
+                        <p:inputText placeholder="Contraseñia" style="width: 100px;" value="#{usuarioController.selected.pass}"/>
+                        <br></br>
+                        <p:commandButton icon="ui-icon-user" value="Log In" action="#{usuarioController.iniciarSesion()}"/>
+                        <p:commandButton icon="fa-user-plus" value="Registrarse" action="#" />
                     </f:facet>
+
+
+
+
+
 
                 </p:menubar>
 
@@ -54,7 +61,10 @@
         </h:form>
         <br></br>
 
+
+
         <div id="container">
+
 
 
 
@@ -67,17 +77,94 @@
             </style>
 
 
+            <h:form>
+                <p:outputLabel value="Busqueda"></p:outputLabel>
+                <h:panelGrid columns="4">
+
+
+                    <p:outputLabel for="txtBuscar" value="Buscar"/>
+                    <p:inputText id="txtBuscar" required="true" value="#{juegoController.selected.nombre}"/>
+
+                    <h:column/>
+                    <p:commandButton icon="ui-icon-search" value="Buscar" update="grid" actionListener="#{juegoController.buscarJueguito()}"/>
+                </h:panelGrid>
+
+
+
+                <p:dataGrid id="grid" value="${juegoController.listaJuegos}" var="jueg">
+                    <h:outputText value="#{jueg.nombre}"/>
+                    <br></br>
+                    <p:graphicImage style="width: 200px; height: 250px;"  value="images/#{jueg.foto}"/>
+                    <br></br>
+                    <h:outputText value="$#{jueg.valor}" />
+                    <br></br>
+                    <p:commandLink value="Detalles" oncomplete="PF('dlg2').show();" update="dialogoBuscar"></p:commandLink>
+                    <br></br>
+                    <h:commandLink action="#" value="Comprar"/>
+                    
+                     <p:dialog id="dialogoBuscar" header="#{jueg.nombre}" widgetVar="dlg2" modal="true" height="250">
+                        <h:outputText value="#{bundle.ListJuegoTitle_nombre}"/>
+                        <h:outputText value="#{jueg.nombre}"/>
+                        <br></br>
+                        <h:outputText value="#{bundle.ListJuegoTitle_descJuego}"/>
+                        <h:outputText value="#{jueg.descJuego}"/>
+                        <br></br>
+                        <h:outputText value="#{bundle.ListJuegoTitle_valor}"/>
+                        <h:outputText value="$#{jueg.valor}" />
+                        <br></br>
+                        <h:outputText value="#{bundle.ListJuegoTitle_fabricante}"/>
+                        <h:outputText value="#{jueg.fabricante}"/>
+                        <br></br>
+                        <h:outputText value="#{bundle.ListJuegoTitle_idioma}"/>
+                        <h:outputText value="#{jueg.idioma}"/>
+                        <br></br>
+                        <h:outputText value="#{bundle.ListJuegoTitle_subtitulos}"/>
+                        <h:outputText value="#{jueg.subtitulos}"/>
+                        <br></br>
+                        <h:outputText value="#{bundle.ListJuegoTitle_online}"/>
+                        <h:outputText value="#{jueg.online}"/>
+                        <br></br>
+                        <h:outputText value="#{bundle.ListJuegoTitle_cantidad}"/>
+                        <h:outputText value="#{jueg.cantidad}"/>
+                        <br></br>
+                        <h:outputText value="#{bundle.ListJuegoTitle_categoria}"/>
+                        <h:outputText value="#{jueg.categoria.descCategoria}"/>
+                        <br></br>
+                        <h:outputText value="#{bundle.ListJuegoTitle_estadoJu}"/>
+                        <h:outputText value="#{jueg.estadoJu.descEstadoju}"/>
+                        <br></br>
+                        <h:outputText value="#{bundle.ListJuegoTitle_tipo}"/>
+                        <h:outputText value="#{jueg.tipo.dscTipo}"/>
+
+
+                    </p:dialog> 
+                </p:dataGrid>
+               
+            </h:form>
+
+
+
+
+
+
+
+
             <h:form id="form">
+
+
                 <p:dataGrid var="item" value="#{juegoController.items}" columns="3"
-                            rows="12" paginator="true" id="cars"
+                            rows="12" paginator="true" id="grid"
                             paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                             rowsPerPageTemplate="6,12,16">
 
-                    <h:panelGrid columns="1" cellpadding="5" border="1">
+
+                    <h:panelGrid columns="1" cellpadding="5" border="1" id="buscarJuegos">
+
+                        <h:outputText value="#{item.nombre}"/>
+                        <p:graphicImage style="width: 200px; height: 250px;"  value="images/#{item.foto}"/>
                         <h:outputText value="$#{item.valor}" />
-                        <p:graphicImage style="width: 200px; height: 250px;"  value="images/#{item.foto}"/> 
                         <p:commandLink value="Detalles" oncomplete="PF('dlg2').show();" update="dialogo"></p:commandLink>
-                        <h:commandLink action="#{juegoController.destroy}" value="Comprar"/>
+                        <h:commandLink action="#" value="Comprar"/>
                     </h:panelGrid>
 
 
