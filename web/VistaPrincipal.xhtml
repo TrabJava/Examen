@@ -6,6 +6,10 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
+        <link rel="shortcut icon" href="images/gamepads_super_nintendo-512.ico"/> 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
         <h:outputStylesheet library="css" name="MenuFormato.css"/>
         <meta http-equiv="Content-type" content="text/html;charset=UTF-8" /> 
         <title>Website Name Here</title>
@@ -209,11 +213,18 @@
                         <p:menubar id="top-nav">                 
                             <p:menuitem value="Juegos"  outcome="/VistaPrincipal.xhtml"/>
                             <p:menuitem value="Configurar"  url="#"/>
+                            <p:submenu label="Administrador" >
+                    <p:menuitem value="Iniciar Como Administrador" outcome="/loginAdmin.xhtml" />
+                    <p:separator />
+                    
+                </p:submenu>
 
                             <f:facet name="options">
                                 <p:inputText placeholder="Usuario" style="width: 100px;"  value="#{usuarioController.selected.user}"/>
                                 <p:inputText placeholder="Contraseña" style="width: 100px;" value="#{usuarioController.selected.pass}"/>
                                 <br></br>
+                                <p:commandLink ></p:commandLink>
+                                
                                 <p:commandButton icon="ui-icon-user" value="Log In" action="#{usuarioController.iniciarSesion()}"/>
                                 <h:link outcome="/usuario/Create.xhtml" value="Crear Usuario" />
                             </f:facet>
@@ -397,6 +408,7 @@
                         <p:menubar id="top-nav">                 
                             <p:menuitem value="Juegos"  outcome="/VistaPrincipal.xhtml"/>
                             <p:menuitem value="Configurar"  url="#"/>
+                            <p:menuitem value="Iniciar Como Administrador" outcome="/loginAdmin.xhtml" />
 
                             <f:facet name="options">
                                 <p:inputText placeholder="Usuario" style="width: 100px;"  value="#{usuarioController.selected.user}"/>
@@ -579,6 +591,7 @@
                         <p:menubar id="top-nav">                 
                             <p:menuitem value="Juegos"  outcome="/VistaPrincipal.xhtml"/>
                             <p:menuitem value="Configurar"  url="#"/>
+                            <p:menuitem value="Iniciar Como Administrador" outcome="/loginAdmin.xhtml" />
 
                             <f:facet name="options">
 
