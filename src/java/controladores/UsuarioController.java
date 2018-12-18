@@ -246,7 +246,7 @@ public class UsuarioController implements Serializable {
           us = ejbFacade.existeUsuario(current);
           HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
             if (us!=null) {
-                redireccion = "/redireccion";
+                redireccion = "/VistaPrincipal";
                 session.setAttribute("usuario", us.getUser());
                 session.setAttribute("contrasenia", us.getPass());
                 session.setAttribute("estado", us.getEstadoUser().getIdEstadous());
