@@ -26,7 +26,7 @@ public class JuegoController implements Serializable {
     private DataModel items = null;
     @EJB
     private modelo.dao.JuegoFacade ejbFacade;
-    
+
     
     private PaginationHelper pagination;
     private int selectedItemIndex;
