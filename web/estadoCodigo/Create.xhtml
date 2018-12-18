@@ -50,7 +50,7 @@
 
                             <h:outputLabel value="#{bundle.CreateEstadoCodigoLabel_descEstadocod}" for="descEstadocod" />
                             <h:inputText id="descEstadocod" value="#{estadoCodigoController.selected.descEstadocod}" title="#{bundle.CreateEstadoCodigoTitle_descEstadocod}" required="true" requiredMessage="#{bundle.CreateEstadoCodigoRequiredMessage_descEstadocod}"
-                                         onblur="limpia()"  onkeypress="return soloNumeros(event)"/>
+                                         onblur="limpia()"  onkeypress="return soloLetras(event)"/>
                         </h:panelGrid>
                         <br />
                         <h:commandLink action="#{estadoCodigoController.create}" value="#{bundle.CreateEstadoCodigoSaveLink}" />
