@@ -6,6 +6,7 @@ import controladores.util.PaginationHelper;
 import modelo.dao.JuegoFacade;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.inject.Named;
@@ -27,12 +28,24 @@ public class JuegoController implements Serializable {
     @EJB
     private modelo.dao.JuegoFacade ejbFacade;
 
+    private List<Juego>listaJuegos;
+
+    public List<Juego> getListaJuegos() {
+        return listaJuegos;
+    }
+
+    public void setListaJuegos(List<Juego> listaJuegos) {
+        this.listaJuegos = listaJuegos;
+    }
     
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
     public JuegoController() {
     }
+
+    
+    
 
     public Juego getSelected() {
         if (current == null) {
@@ -45,6 +58,7 @@ public class JuegoController implements Serializable {
     private JuegoFacade getFacade() {
         return ejbFacade;
     }
+    
 
     public PaginationHelper getPagination() {
         if (pagination == null) {
@@ -72,7 +86,7 @@ public class JuegoController implements Serializable {
     public String prepareView() {
         current = (Juego) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
-        return "View";
+        return "juego/View";
     }
 
     public String prepareCreate() {
@@ -234,6 +248,14 @@ public class JuegoController implements Serializable {
 
     }
 
-  
+    public void buscarJueguito(){
+        try {
+               listaJuegos = ejbFacade.buscarNombreJuego(current);
+     
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        
+        }
+    }
     
 }
