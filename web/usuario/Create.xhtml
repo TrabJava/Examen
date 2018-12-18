@@ -11,7 +11,12 @@
             <h:outputText value="#{bundle.CreateUsuarioTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            
+            <h:outputScript library="Jss" name="SoloNumeroesYPuntos.js"></h:outputScript>
+            <h:outputScript library="Jss" name="Solo_LetrasJS.js"></h:outputScript>
+            <h:outputScript library="Jss" name="TodoMenosEspacios.js"></h:outputScript>
+            <h:outputScript library="Jss" name="SoloNumerosss.js"></h:outputScript>
+            <h:outputScript library="Jss" name="Letras_Numeros_Espacio.js"></h:outputScript>
+            <h:outputScript library="Jss" name="Letras_numerooosss.js"></h:outputScript>
              <c:choose>
             <c:when test="${usuario == null and usuarioAdmin==null  }">
                 <h1> Tienes que iniciar sesión como Administrador Primero</h1>
@@ -43,14 +48,13 @@
             </h:panelGroup>
             <h:form>
                 <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.CreateUsuarioLabel_idUsuario}" for="idUsuario" />
-                    <h:inputText id="idUsuario" value="#{usuarioController.selected.idUsuario}" title="#{bundle.CreateUsuarioTitle_idUsuario}" required="true" requiredMessage="#{bundle.CreateUsuarioRequiredMessage_idUsuario}"/>
+                    
                     <h:outputLabel value="#{bundle.CreateUsuarioLabel_nombre}" for="nombre" />
-                    <h:inputText id="nombre" value="#{usuarioController.selected.nombre}" title="#{bundle.CreateUsuarioTitle_nombre}" required="true" requiredMessage="#{bundle.CreateUsuarioRequiredMessage_nombre}"/>
+                    <h:inputText id="nombre" value="#{usuarioController.selected.nombre}" title="#{bundle.CreateUsuarioTitle_nombre}" required="true" requiredMessage="#{bundle.CreateUsuarioRequiredMessage_nombre}" onblur="limpia()"  onkeypress="return soloLetras(event)"/>
                     <h:outputLabel value="#{bundle.CreateUsuarioLabel_user}" for="user" />
-                    <h:inputText id="user" value="#{usuarioController.selected.user}" title="#{bundle.CreateUsuarioTitle_user}" required="true" requiredMessage="#{bundle.CreateUsuarioRequiredMessage_user}"/>
+                    <h:inputText id="user" value="#{usuarioController.selected.user}" title="#{bundle.CreateUsuarioTitle_user}" required="true" requiredMessage="#{bundle.CreateUsuarioRequiredMessage_user}" onblur="limpia()"  onkeypress="return Letras_numerossss(event)"/>
                     <h:outputLabel value="#{bundle.CreateUsuarioLabel_pass}" for="pass" />
-                    <h:inputText id="pass" value="#{usuarioController.selected.pass}" title="#{bundle.CreateUsuarioTitle_pass}" required="true" requiredMessage="#{bundle.CreateUsuarioRequiredMessage_pass}"/>
+                    <h:inputText id="pass" value="#{usuarioController.selected.pass}" title="#{bundle.CreateUsuarioTitle_pass}" required="true" requiredMessage="#{bundle.CreateUsuarioRequiredMessage_pass}" onblur="limpia()"  onkeypress="return todoMenosEspacios(event)"/>
                     <h:outputLabel value="#{bundle.CreateUsuarioLabel_foto}" for="foto" />
                     <h:inputText id="foto" value="#{usuarioController.selected.foto}" title="#{bundle.CreateUsuarioTitle_foto}" />
                     <h:outputLabel value="#{bundle.CreateUsuarioLabel_estadoUser}" for="estadoUser" />
