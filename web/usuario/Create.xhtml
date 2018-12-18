@@ -4,7 +4,8 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui">
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
@@ -17,73 +18,110 @@
             <h:outputScript library="Jss" name="SoloNumerosss.js"></h:outputScript>
             <h:outputScript library="Jss" name="Letras_Numeros_Espacio.js"></h:outputScript>
             <h:outputScript library="Jss" name="Letras_numerooosss.js"></h:outputScript>
-             <c:choose>
-            <c:when test="${usuario == null and usuarioAdmin==null  }">
-                <h1> Tienes que iniciar sesión como Administrador Primero</h1>
-                <h:link outcome="/loginAdmin.xhtml" value="Login" />
-            </c:when>
-            <c:when test="${usuario!=null and estado==1 and usuarioAdmin==null }">
-                <h1>Credenciales Incorrectas</h1>
-                <h:link outcome="/login.xhtml" value="Login" />
-            </c:when>
-            <c:when test="${estado!=1 and usuario!=null and usuarioAdmin==null and estadoAdmin!=1 }">
-                <h1> Tu cuenta no esta activada y/o no son las credenciales correctas :c</h1>
-                <h:link outcome="/login.xhtml" value="Login" />
-            </c:when>
-            <c:when test="${estadoAdmin!=1}">
-                <h1> Tu cuenta no esta activada :c</h1>
-                <h:link outcome="/loginAdmin.xhtml" value="Login Admin" />
-            </c:when>
-            <c:when test="${usuarioAdmin==null}">
-                <h1> Tienes que iniciar sesión como Administrador Primero</h1>
-                <h:link outcome="/loginAdmin.xhtml" value="Login Admin" />
-            </c:when>
-            <c:when test="${usuarioAdmin!=null and estadoAdmin==1}">
-                <ui:include src="../Menú_Admin.xhtml" />
-                <br></br>
-                <br></br>
-                <br></br>
-                 <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
-            <h:form>
-                <h:panelGrid columns="2">
-                    
-                    <h:outputLabel value="#{bundle.CreateUsuarioLabel_nombre}" for="nombre" />
-                    <h:inputText id="nombre" value="#{usuarioController.selected.nombre}" title="#{bundle.CreateUsuarioTitle_nombre}" required="true" requiredMessage="#{bundle.CreateUsuarioRequiredMessage_nombre}" onblur="limpia()"  onkeypress="return soloLetras(event)"/>
-                    <h:outputLabel value="#{bundle.CreateUsuarioLabel_user}" for="user" />
-                    <h:inputText id="user" value="#{usuarioController.selected.user}" title="#{bundle.CreateUsuarioTitle_user}" required="true" requiredMessage="#{bundle.CreateUsuarioRequiredMessage_user}" onblur="limpia()"  onkeypress="return Letras_numerossss(event)"/>
-                    <h:outputLabel value="#{bundle.CreateUsuarioLabel_pass}" for="pass" />
-                    <h:inputText id="pass" value="#{usuarioController.selected.pass}" title="#{bundle.CreateUsuarioTitle_pass}" required="true" requiredMessage="#{bundle.CreateUsuarioRequiredMessage_pass}" onblur="limpia()"  onkeypress="return todoMenosEspacios(event)"/>
-                    <h:outputLabel value="#{bundle.CreateUsuarioLabel_foto}" for="foto" />
-                    <h:inputText id="foto" value="#{usuarioController.selected.foto}" title="#{bundle.CreateUsuarioTitle_foto}" />
-                    <h:outputLabel value="#{bundle.CreateUsuarioLabel_estadoUser}" for="estadoUser" />
-                    <h:selectOneMenu id="estadoUser" value="#{usuarioController.selected.estadoUser}" title="#{bundle.CreateUsuarioTitle_estadoUser}" required="true" requiredMessage="#{bundle.CreateUsuarioRequiredMessage_estadoUser}">
-                        <f:selectItems value="#{estadoUsuarioController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
-                    <h:outputLabel value="#{bundle.CreateUsuarioLabel_juego}" for="juego" />
-                    <h:selectOneMenu id="juego" value="#{usuarioController.selected.juego}" title="#{bundle.CreateUsuarioTitle_juego}" >
-                        <f:selectItems value="#{juegoController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
-                    <h:outputLabel value="#{bundle.CreateUsuarioLabel_ticket}" for="ticket" />
-                    <h:selectOneMenu id="ticket" value="#{usuarioController.selected.ticket}" title="#{bundle.CreateUsuarioTitle_ticket}" >
-                        <f:selectItems value="#{ticketController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
-                </h:panelGrid>
-                <br />
-                <h:commandLink action="#{usuarioController.create}" value="#{bundle.CreateUsuarioSaveLink}" />
-                <br />
-                <br />
-                <h:commandLink action="#{usuarioController.prepareList}" value="#{bundle.CreateUsuarioShowAllLink}" immediate="true"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.CreateUsuarioIndexLink}"/>
-            </h:form>
-            </c:when>
+            <c:choose>
+                <c:when test="${usuario ==null || usuarioAdmin==null   }">
+                    <h:panelGroup id="messagePanel" layout="block">
+                        <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                    </h:panelGroup>
+                    <h:form>
+                        <h:panelGrid columns="2">
 
-        </c:choose>
-            
-           
+                            <h:outputLabel value="#{bundle.CreateUsuarioLabel_nombre}" for="nombre" />
+                            <h:inputText id="nombre" value="#{usuarioController.selected.nombre}" title="#{bundle.CreateUsuarioTitle_nombre}" required="true" requiredMessage="#{bundle.CreateUsuarioRequiredMessage_nombre}" onblur="limpia()"  onkeypress="return soloLetras(event)"/>
+                            <h:outputLabel value="#{bundle.CreateUsuarioLabel_user}" for="user" />
+                            <h:inputText id="user" value="#{usuarioController.selected.user}" title="#{bundle.CreateUsuarioTitle_user}" required="true" requiredMessage="#{bundle.CreateUsuarioRequiredMessage_user}" onblur="limpia()"  onkeypress="return Letras_numerossss(event)"/>
+                            <h:outputLabel value="#{bundle.CreateUsuarioLabel_pass}" for="pass" />
+                            <p:password id="pass" value="#{usuarioController.selected.pass}" title="#{bundle.CreateUsuarioTitle_pass}" required="true" requiredMessage="#{bundle.CreateUsuarioRequiredMessage_pass}" onblur="limpia()"  onkeypress="return todoMenosEspacios(event)" weakLabel="Débil"
+                                strongLabel="Fuerte" goodLabel="Bueno" feedback="true"/>
+                            <h:outputLabel value="#{bundle.CreateUsuarioLabel_foto}" for="foto" />
+                            <h:inputText id="foto" value="#{usuarioController.selected.foto}" title="#{bundle.CreateUsuarioTitle_foto}" />
+                            <h:outputLabel value="#{bundle.CreateUsuarioLabel_estadoUser}" for="estadoUser" />
+                            <h:selectOneMenu id="estadoUser" value="#{usuarioController.selected.estadoUser}" title="#{bundle.CreateUsuarioTitle_estadoUser}" required="true" requiredMessage="#{bundle.CreateUsuarioRequiredMessage_estadoUser}">
+                                <f:selectItems value="#{estadoUsuarioController.itemsAvailableSelectOne}"/>
+                            </h:selectOneMenu>
+                            <h:outputLabel value="#{bundle.CreateUsuarioLabel_juego}" for="juego" />
+                            <h:selectOneMenu id="juego" value="#{usuarioController.selected.juego}" title="#{bundle.CreateUsuarioTitle_juego}" >
+                                <f:selectItems value="#{juegoController.itemsAvailableSelectOne}"/>
+                            </h:selectOneMenu>
+                            <h:outputLabel value="#{bundle.CreateUsuarioLabel_ticket}" for="ticket" />
+                            <h:selectOneMenu id="ticket" value="#{usuarioController.selected.ticket}" title="#{bundle.CreateUsuarioTitle_ticket}" >
+                                <f:selectItems value="#{ticketController.itemsAvailableSelectOne}"/>
+                            </h:selectOneMenu>
+                        </h:panelGrid>
+                        <br />
+                        <h:commandLink action="#{usuarioController.create}" value="#{bundle.CreateUsuarioSaveLink}" />
+                        <br />
+                        <br />
+                        <h:commandLink action="#{usuarioController.prepareList}" value="#{bundle.CreateUsuarioShowAllLink}" immediate="true"/>
+                        <br />
+                        <br />
+                        <h:link outcome="/index" value="#{bundle.CreateUsuarioIndexLink}"/>
+                    </h:form>
+
+                </c:when>
+                <c:when test="${usuario!=null and estado==1 and usuarioAdmin==null }">
+                    <h1>Credenciales Incorrectas</h1>
+                    <h:link outcome="/login.xhtml" value="Login" />
+                </c:when>
+                <c:when test="${estado!=1 and usuario!=null and usuarioAdmin==null and estadoAdmin!=1 }">
+                    <h1> Tu cuenta no esta activada y/o no son las credenciales correctas :c</h1>
+                    <h:link outcome="/login.xhtml" value="Login" />
+                </c:when>
+                <c:when test="${estadoAdmin!=1}">
+                    <h1> Tu cuenta no esta activada :c</h1>
+                    <h:link outcome="/loginAdmin.xhtml" value="Login Admin" />
+                </c:when>
+                <c:when test="${usuarioAdmin==null}">
+                    <h1> Tienes que iniciar sesión como Administrador Primero</h1>
+                    <h:link outcome="/loginAdmin.xhtml" value="Login Admin" />
+                </c:when>
+                <c:when test="${usuarioAdmin!=null and estadoAdmin==1}">
+                    <ui:include src="../Menú_Admin.xhtml" />
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <h:panelGroup id="messagePanel" layout="block">
+                        <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                    </h:panelGroup>
+                    <h:form>
+                        <h:panelGrid columns="2">
+
+                            <h:outputLabel value="#{bundle.CreateUsuarioLabel_nombre}" for="nombre" />
+                            <h:inputText id="nombre" value="#{usuarioController.selected.nombre}" title="#{bundle.CreateUsuarioTitle_nombre}" required="true" requiredMessage="#{bundle.CreateUsuarioRequiredMessage_nombre}" onblur="limpia()"  onkeypress="return soloLetras(event)"/>
+                            <h:outputLabel value="#{bundle.CreateUsuarioLabel_user}" for="user" />
+                            <h:inputText id="user" value="#{usuarioController.selected.user}" title="#{bundle.CreateUsuarioTitle_user}" required="true" requiredMessage="#{bundle.CreateUsuarioRequiredMessage_user}" onblur="limpia()"  onkeypress="return Letras_numerossss(event)"/>
+                            <h:outputLabel value="#{bundle.CreateUsuarioLabel_pass}" for="pass" />
+                            <p:password id="pass" value="#{usuarioController.selected.pass}" title="#{bundle.CreateUsuarioTitle_pass}" required="true" requiredMessage="#{bundle.CreateUsuarioRequiredMessage_pass}" onblur="limpia()"  onkeypress="return todoMenosEspacios(event)" weakLabel="Débil"
+                                strongLabel="Fuerte" goodLabel="Bueno" feedback="true" />
+                            <h:outputLabel value="#{bundle.CreateUsuarioLabel_foto}" for="foto" />
+                            <h:inputText id="foto" value="#{usuarioController.selected.foto}" title="#{bundle.CreateUsuarioTitle_foto}" />
+                            <h:outputLabel value="#{bundle.CreateUsuarioLabel_estadoUser}" for="estadoUser" />
+                            <h:selectOneMenu id="estadoUser" value="#{usuarioController.selected.estadoUser}" title="#{bundle.CreateUsuarioTitle_estadoUser}" required="true" requiredMessage="#{bundle.CreateUsuarioRequiredMessage_estadoUser}">
+                                <f:selectItems value="#{estadoUsuarioController.itemsAvailableSelectOne}"/>
+                            </h:selectOneMenu>
+                            <h:outputLabel value="#{bundle.CreateUsuarioLabel_juego}" for="juego" />
+                            <h:selectOneMenu id="juego" value="#{usuarioController.selected.juego}" title="#{bundle.CreateUsuarioTitle_juego}" >
+                                <f:selectItems value="#{juegoController.itemsAvailableSelectOne}"/>
+                            </h:selectOneMenu>
+                            <h:outputLabel value="#{bundle.CreateUsuarioLabel_ticket}" for="ticket" />
+                            <h:selectOneMenu id="ticket" value="#{usuarioController.selected.ticket}" title="#{bundle.CreateUsuarioTitle_ticket}" >
+                                <f:selectItems value="#{ticketController.itemsAvailableSelectOne}"/>
+                            </h:selectOneMenu>
+                        </h:panelGrid>
+                        <br />
+                        <h:commandLink action="#{usuarioController.create}" value="#{bundle.CreateUsuarioSaveLink}" />
+                        <br />
+                        <br />
+                        <h:commandLink action="#{usuarioController.prepareList}" value="#{bundle.CreateUsuarioShowAllLink}" immediate="true"/>
+                        <br />
+                        <br />
+                        <h:link outcome="/index" value="#{bundle.CreateUsuarioIndexLink}"/>
+                    </h:form>
+                </c:when>
+
+            </c:choose>
+
+
         </ui:define>
     </ui:composition>
 
