@@ -22,9 +22,23 @@
                         <p:menubar id="top-nav">                 
                             <p:menuitem value="Juegos"  outcome="/VistaPrincipal.xhtml"/>
                             <p:menuitem value="Configurar"  url="#"/>
-
                             <f:facet name="options">
+                                <h:outputText value="Bienvenido: ${usuario}  "></h:outputText>
+                                <br></br>
+                                
+                                <p:dataGrid var="item" value="#{usuarioController.items}"  >
 
+
+                                    <p:graphicImage style="width: 100px; height: 100px;"  value="images/#{item.foto}"/>
+
+                                </p:dataGrid>
+                                
+
+                            </f:facet>
+                            
+                            <f:facet name="options">
+                                
+                                <p:commandButton value="cerrar Sesion" action="#{usuarioController.cerrarSesion()}"></p:commandButton>
                             </f:facet>
 
                         </p:menubar>
@@ -187,7 +201,7 @@
                     </div>
                 </div>
             </c:when>
-            
+
             <c:when test="${usuario == null  and usuarioAdmin!=null and estadoAdmin==1 and estado==null  }">
                 <h:form>
                     <div id="container">
@@ -198,7 +212,7 @@
 
                             <f:facet name="options">
                                 <p:inputText placeholder="Usuario" style="width: 100px;"  value="#{usuarioController.selected.user}"/>
-                                <p:inputText placeholder="Contraseñia" style="width: 100px;" value="#{usuarioController.selected.pass}"/>
+                                <p:inputText placeholder="Contraseña" style="width: 100px;" value="#{usuarioController.selected.pass}"/>
                                 <br></br>
                                 <p:commandButton icon="ui-icon-user" value="Log In" action="#{usuarioController.iniciarSesion()}"/>
                                 <h:link outcome="/usuario/Create.xhtml" value="Crear Usuario" />
@@ -378,28 +392,28 @@
 
             <c:when test="${usuario==null and usuarioAdmin==null  }">
                 <h:form>
-                <div id="container">
-                    <div id="header"></div>
-                    <p:menubar id="top-nav">                 
-                        <p:menuitem value="Juegos"  outcome="/VistaPrincipal.xhtml"/>
-                        <p:menuitem value="Configurar"  url="#"/>
+                    <div id="container">
+                        <div id="header"></div>
+                        <p:menubar id="top-nav">                 
+                            <p:menuitem value="Juegos"  outcome="/VistaPrincipal.xhtml"/>
+                            <p:menuitem value="Configurar"  url="#"/>
 
-                        <f:facet name="options">
-                            <p:inputText placeholder="Usuario" style="width: 100px;"  value="#{usuarioController.selected.user}"/>
-                            <p:inputText placeholder="Contraseñia" style="width: 100px;" value="#{usuarioController.selected.pass}"/>
-                            <br></br>
-                            <p:commandButton icon="ui-icon-user" value="Log In" action="#{usuarioController.iniciarSesion()}"/>
-                            <h:link outcome="/usuario/Create.xhtml" value="Crear Usuario" />
-                        </f:facet>
-
-
+                            <f:facet name="options">
+                                <p:inputText placeholder="Usuario" style="width: 100px;"  value="#{usuarioController.selected.user}"/>
+                                <p:inputText placeholder="Contraseña" style="width: 100px;" value="#{usuarioController.selected.pass}"/>
+                                <br></br>
+                                <p:commandButton icon="ui-icon-user" value="Log In" action="#{usuarioController.iniciarSesion()}"/>
+                                <h:link outcome="/usuario/Create.xhtml" value="Crear Usuario" />
+                            </f:facet>
 
 
 
 
-                    </p:menubar>
 
-                </div>
+
+                        </p:menubar>
+
+                    </div>
                 </h:form>
                 <br></br>
 
@@ -557,7 +571,7 @@
                     </div>
                 </div>
             </c:when>
-             <c:when test="${usuarioAdmin!=null and estadoAdmin==1}">
+            <c:when test="${usuarioAdmin!=null and estadoAdmin==1}">
                 <ui:include src="Menú_Admin.xhtml" />
                 <h:form>
                     <div id="container">
